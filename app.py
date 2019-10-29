@@ -1,17 +1,14 @@
 from flask import Flask, render_template, request, redirect, url_for
 import os
+from bson import ObjectId
 
 import pymongo
 
-# 1. Retrieve the environment variables
-# MONGO_URI = os.getenv('MONGO_URI')
-# DATABASE_NAME = 'artworksAndConsigners'
+MONGO_URI = os.getenv('MONGO_URI')
+DATABASE_NAME = 'artworksAndConsigners'
 
-MONGO_URI = "mongodb+srv://admin:pw@gallery-cwjwv.mongodb.net/test?retryWrites=true&w=majority"
-DATABASE_NAME = "artworksAndConsigners"
 conn = pymongo.MongoClient(MONGO_URI)
 
-# 2. Create the connection
 def get_connection():
     conn = pymongo.MongoClient(MONGO_URI)
     return conn
@@ -23,6 +20,8 @@ def index():
     artworksAndConsigners = conn[DATABASE_NAME]['artworksAndConsigners'].find()
     return render_template('index.template.html', results=artworksAndConsigners)
 
+
+# CREATE
 
 @app.route('/add-artwork')
 def show_add_artwork_form():
@@ -38,7 +37,8 @@ def process_add_artwork_form():
     medium = request.form['medium']
     description = request.form['description']
     
-    type = request.form['type']
+    # pass value as ARRAY
+    type = request.form.getlist('type')
     
     conn = get_connection()
     conn[DATABASE_NAME]['artworksAndConsigners'].insert({
@@ -50,10 +50,54 @@ def process_add_artwork_form():
         "medium" : medium,
         "description" : description,
         
+    # pass value as ARRAY
         "type" : type
     })
     
     # redirect back to root url
+    return redirect("/")
+
+# UPDATE
+
+@app.route('/edit-artwork/<artwork_id>')
+def show_edit_artwork_form(artwork_id):
+    conn = get_connection()
+    artwork = conn[DATABASE_NAME]['artworksAndConsigners'].find_one({
+        '_id': ObjectId(artwork_id)
+    })
+    
+    results = artwork['type']
+    
+    return render_template('edit_artwork.template.html', artworksAndConsigners=artwork, types = results)
+    
+@app.route("/edit-artwork/<artwork_id>", methods=['POST'])
+def process_edit_artwork_form(artwork_id):
+    image = request.form.get('image')
+    artist = request.form['artist']
+    title = request.form['title']
+    year = request.form['year']
+    dimensions = request.form['dimensions']
+    medium = request.form['medium']
+    description = request.form['description']
+    
+    type = request.form.getlist('type')
+    
+    conn = get_connection()
+    conn[DATABASE_NAME]["artworksAndConsigners"].update({
+        '_id': 'ObjectId(artwork_id)'
+    }, {
+       "image" : image,
+        "artist" : artist,
+        "title" : title,
+        "year" : year,
+        "dimensions" : dimensions,
+        "medium" : medium,
+        "description" : description,
+        
+    # pass value as ARRAY
+        "type" : type
+    })
+    
     return redirect("/")
 
 

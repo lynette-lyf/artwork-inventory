@@ -12,46 +12,57 @@
   </head>
   <body>
     <div class='container'>
-        <h1>Add Artwork</h1>
+        <h1>Edit Artwork</h1>
         <form class='form' method="POST">
           <div class='form-row'>
               <div class='col-12'>
                 <label>Image</label>
-                <input type='text' class='form-control' name='image' required/>
+                <input type='text' class='form-control' name='image' value='{{artworksAndConsigners["image"]}}' required/>
             </div>
             <div class='col-6'>
                 <label>Artist</label>
-                <input type='text' class='form-control' name='artist' required/>
+                <input type='text' class='form-control' name='artist' value='{{artworksAndConsigners["artist"]}}' required/>
             </div>
             <div class='col-6'>
                 <label>Title</label>
-                <input type='text' class='form-control' name='title' required/>
+                <input type='text' class='form-control' name='title' value='{{artworksAndConsigners["title"]}}' required/>
             </div>
           </div>
           
           <div class='form-row'>
             <div class='col-2'>
                 <label>Year</label>
-                <input type='number' class='form-control' maxlength='4' min='1000' max='2019' name='year' required/>
+                <input type='number' class='form-control' maxlength='4' min='1000' max='2019' name='year' value='{{artworksAndConsigners["year"]}}' required/>
             </div>
             <div class='col-4'>
                 <label>Dimensions (height x width in cm)</label>
-                <input type='text' class='form-control' name='dimensions' required/>
+                <input type='text' class='form-control' name='dimensions' value='{{artworksAndConsigners["dimensions"]}}' required/>
             </div>
             <div class='col-6'>
                 <label>Medium</label>
-                <input type='text' class='form-control' name='medium' required/>
+                <input type='text' class='form-control' name='medium' value='{{artworksAndConsigners["medium"]}}' required/>
             </div>
           </div>
             
             <div class='form-group'>
                 <label>Description (optional)</label>
-                <textarea class="form-control" rows="3" name='description'></textarea>
+                <textarea class="form-control" rows="3" name='description' value='{{artworksAndConsigners["description"]}}'></textarea>
             </div>
             
-            <!--Use checkboxes to allow user to select more than 1 type (translate to array)-->
+            <!--Grab 'type' array and display as checked boxes, if fields dont match, box must be unchecked-->
             
             <label>Type (Please select all that apply.)</label>
+            
+            {% for i in types %}
+    
+            {% if i == "Abstract" %}
+            
+             
+            
+
+            {% endif %}
+            
+            {% endfor %}
             
             <div class="form-check">
               <input class="form-check-input" type="checkbox" value="Abstract" id="type" name="type">
@@ -59,6 +70,7 @@
                 Abstract
               </label>
             </div>
+            
             
             <div class="form-check">
               <input class="form-check-input" type="checkbox" value="Abstract Expressionist" id="type" name="type">
@@ -79,7 +91,7 @@
               </label>
             </div>
             
-            <input type="submit" value="Add new"/>
+            <input type="submit" value="Update"/>
         </form>
     </div>
 

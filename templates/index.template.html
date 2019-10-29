@@ -54,6 +54,13 @@
                     <span>{{ each_type }}</span>&nbsp;
                     {%endfor%}
                 </td>
+                <td>
+                    <a href="edit-artwork/{{each_result['_id']}}">Edit</a>
+                </td>
+                <td>
+                        <input type="submit" value="Delete">
+                    </form>
+                </td>
             </tr>
              {%endfor%}
         </table>
