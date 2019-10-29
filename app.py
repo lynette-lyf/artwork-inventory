@@ -24,7 +24,35 @@ def index():
     return render_template('index.template.html', results=artworksAndConsigners)
 
 
+@app.route('/add-artwork')
+def show_add_artwork_form():
+    return render_template('add_artwork.template.html')
 
+@app.route('/add-artwork', methods=['POST'])
+def process_add_artwork_form():
+    image = request.form.get('image')
+    artist = request.form['artist']
+    title = request.form['title']
+    year = request.form['year']
+    dimensions = request.form['dimensions']
+    medium = request.form['medium']
+    description = request.form['description']
+    type = request.form['type']
+    
+    conn = get_connection()
+    conn[DATABASE_NAME]['artworksAndConsigners'].insert({
+        "image" : image,
+        "artist" : artist,
+        "title" : title,
+        "year" : year,
+        "dimensions" : dimensions,
+        "medium" : medium,
+        "description" : description,
+        "type" : type
+    })
+    
+    # redirect back to root url
+    return redirect("/")
 
 
 
