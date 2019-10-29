@@ -37,6 +37,7 @@ def process_add_artwork_form():
     dimensions = request.form['dimensions']
     medium = request.form['medium']
     description = request.form['description']
+    
     type = request.form['type']
     
     conn = get_connection()
@@ -48,6 +49,7 @@ def process_add_artwork_form():
         "dimensions" : dimensions,
         "medium" : medium,
         "description" : description,
+        
         "type" : type
     })
     
