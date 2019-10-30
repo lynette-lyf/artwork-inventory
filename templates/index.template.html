@@ -13,6 +13,13 @@
   <body>
     <div class='container'>
         
+        <form method="GET" class='mb-3'>
+            <div class='form-group'>
+                <input placeholder='Search by Artist or Title' type="text" value="{{search_terms}}" name='search-by' class="form-control mb-1"/>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Search"/>
+        </form>
+        
         <a href="add-artwork" class="btn btn-primary">
             Add Artwork
         </a>
@@ -58,7 +65,7 @@
                     <a href="edit-artwork/{{each_result['_id']}}">Edit</a>
                 </td>
                 <td>
-                        <input type="submit" value="Delete">
+                    <a href="confirm-delete-artwork/{{each_result['_id']}}">Delete</a>  
                     </form>
                 </td>
             </tr>

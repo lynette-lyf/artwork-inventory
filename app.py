@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 import os
 from bson import ObjectId
+import re
 
 import pymongo
 
@@ -21,7 +22,7 @@ def index():
     return render_template('index.template.html', results=artworksAndConsigners)
 
 
-# CREATE
+# CREATE************************************************************************
 
 @app.route('/add-artwork')
 def show_add_artwork_form():
@@ -56,8 +57,51 @@ def process_add_artwork_form():
     
     # redirect back to root url
     return redirect("/")
+    
+# READ**************************************************************************
 
-# UPDATE
+@app.route('/')
+def index_search():
+    search_terms = request.args.get('search-by')
+    title = request.args.get['title']
+    artist = request.args.get['artist']
+    
+#     # countries = ["Singapore", "Canada", "New Zealand", "Malaysia", "Ireland"]
+#     # amentities = ["Internet", "Washer", "Waterfront","Step-free access"]
+
+    search_criteria = {}
+    print (search_criteria)
+    if search_terms is not None and search_terms is not "":
+        search_criteria["title", "artist"] = re.compile(r'{}'.format(search_terms), re.I)
+        # search_criteria["artist"] = re.compile(r'{}'.format(search_terms), re.I)
+
+#     # if country != None and country != "Any":
+#     #     search_criteria['address.country'] = country 
+        
+#     # if len(must_have) > 0:
+#     #     search_criteria['amenities'] = {
+#     #         '$all' : must_have 
+#     #   }
+        
+    
+        
+    print (search_criteria)
+#     for display
+#     if search_terms is None:
+#         search_terms =""
+    
+    if search_terms is None:
+        search_terms = ""
+    
+    conn = get_connection()
+    cursor = conn[DATABASE_NAME]["artworksAndConsigners"].find(search_criteria)
+    return render_template("index.template.html", results=cursor, 
+        search_terms=search_terms, title=title, artist=artist) 
+        
+#         # countries=countries,
+#         # amentities=amentities, must_have=must_have)
+
+# UPDATE************************************************************************
 
 @app.route('/edit-artwork/<artwork_id>')
 def show_edit_artwork_form(artwork_id):
@@ -79,7 +123,6 @@ def process_edit_artwork_form(artwork_id):
     dimensions = request.form['dimensions']
     medium = request.form['medium']
     description = request.form['description']
-    
     type = request.form.getlist('type')
     
     conn = get_connection()
@@ -93,14 +136,42 @@ def process_edit_artwork_form(artwork_id):
         "dimensions" : dimensions,
         "medium" : medium,
         "description" : description,
+        "type": type 
+    }
+    # , {
         
-    # pass value as ARRAY
-        "type" : type
+    #     selected = [ type ]
+    #     all_types = ['Abstract', 'Abstract Expressionist', 'Renaissance', 'Impressionism']
+        
+    # }
+    )
+    
+    return redirect("/",
+    selected_type = selected, all_types=all_types)
+    
+    
+# DELETE************************************************************************
+
+@app.route('/confirm-delete-artwork/<artwork_id>')
+def confirm_delete_artwork(artwork_id):
+    artist = request.form.get('artist')
+    title = request.form.get('title')
+    artwork = conn[DATABASE_NAME]["artworksAndConsigners"].find_one({
+        '_id': 'ObjectId(artwork_id)',
+    }, {
+        "title": title,
+        "artist": artist
     })
     
-    return redirect("/")
+    return render_template('confirm_delete_artwork.template.html', artworksAndConsigners=artwork)
 
-
+@app.route('/delete-artwork/<artwork_id>')
+def delete_artwork(artwork_id):
+    conn[DATABASE_NAME]["artworksAndConsigners"].delete_one({
+        '_id': 'ObjectId(artwork_id)'
+    })
+    
+    return redirect('/')
 
 # "magic code" -- boilerplate
 if __name__ == '__main__':

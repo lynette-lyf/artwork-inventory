@@ -53,16 +53,16 @@
             
             <label>Type (Please select all that apply.)</label>
             
-            {% for i in types %}
-    
-            {% if i == "Abstract" %}
+            <form>
+            {% for t in all_types %}
+            <input type='checkbox' value '{{t}}'
+            {% if f in selected_fruits %} checked {%endif%}
             
-             
             
-
-            {% endif %}
             
+            />{{f}}
             {% endfor %}
+            </form>
             
             <div class="form-check">
               <input class="form-check-input" type="checkbox" value="Abstract" id="type" name="type">
