@@ -12,7 +12,7 @@
   </head>
   <body>
     <div class='container'>
-        <h1>Edit Artwork</h1>
+        <h1>Update Artwork</h1>
         <form class='form' method="POST">
           <div class='form-row'>
               <div class='col-12'>
@@ -49,47 +49,20 @@
                 <textarea class="form-control" rows="3" name='description' value='{{artworksAndConsigners["description"]}}'></textarea>
             </div>
             
-            <!--Grab 'type' array and display as checked boxes, if fields dont match, box must be unchecked-->
+            <label>Type: (Please select all that apply.)</label>
             
-            <label>Type (Please select all that apply.)</label>
-            
-            <form>
+            <div class="form-check">
             {% for t in all_types %}
-            <input type='checkbox' value '{{t}}'
-            {% if f in selected_fruits %} checked {%endif%}
+            <input class="form-check-input" type='checkbox' value='{{t}}' id="type" name="type"
+            {% if t in selected_type %} checked {%endif%}/>
             
+            <label class="form-check-label" for="{{t}}">
+              {{t}}
+            </label>
             
-            
-            />{{f}}
             {% endfor %}
             </form>
-            
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="Abstract" id="type" name="type">
-              <label class="form-check-label" for="type">
-                Abstract
-              </label>
-            </div>
-            
-            
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="Abstract Expressionist" id="type" name="type">
-              <label class="form-check-label" for="type">
-                Abstract Expressionist
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="Renaissance" id="type" name="type">
-              <label class="form-check-label" for="type">
-                Renaissance
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="Impressionism" id="type" name="type">
-              <label class="form-check-label" for="type">
-                Impressionism
-              </label>
-            </div>
+          
             
             <input type="submit" value="Update"/>
         </form>

@@ -111,8 +111,10 @@ def show_edit_artwork_form(artwork_id):
     })
     
     results = artwork['type']
-    
-    return render_template('edit_artwork.template.html', artworksAndConsigners=artwork, types = results)
+    all_types = ['Abstract', 'Abstract Expressionist', 'Renaissance', 'Impressionism', 'Painting', 'Acrylic']
+
+    return render_template('edit_artwork.template.html', artworksAndConsigners=artwork, 
+    selected_type = results, all_types=all_types)
     
 @app.route("/edit-artwork/<artwork_id>", methods=['POST'])
 def process_edit_artwork_form(artwork_id):
@@ -124,7 +126,7 @@ def process_edit_artwork_form(artwork_id):
     medium = request.form['medium']
     description = request.form['description']
     type = request.form.getlist('type')
-    
+
     conn = get_connection()
     conn[DATABASE_NAME]["artworksAndConsigners"].update({
         '_id': 'ObjectId(artwork_id)'
@@ -137,17 +139,9 @@ def process_edit_artwork_form(artwork_id):
         "medium" : medium,
         "description" : description,
         "type": type 
-    }
-    # , {
-        
-    #     selected = [ type ]
-    #     all_types = ['Abstract', 'Abstract Expressionist', 'Renaissance', 'Impressionism']
-        
-    # }
-    )
+    })
     
-    return redirect("/",
-    selected_type = selected, all_types=all_types)
+    return redirect("/")
     
     
 # DELETE************************************************************************
