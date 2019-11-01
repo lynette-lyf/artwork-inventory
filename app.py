@@ -61,45 +61,37 @@ def process_add_artwork_form():
 # READ**************************************************************************
 
 @app.route('/')
-def index_search():
+def search_index():
     search_terms = request.args.get('search-by')
-    title = request.args.get['title']
-    artist = request.args.get['artist']
+    title = request.args.get('title')
+    must_have = request.args.getlist('must-have')
     
-#     # countries = ["Singapore", "Canada", "New Zealand", "Malaysia", "Ireland"]
-#     # amentities = ["Internet", "Washer", "Waterfront","Step-free access"]
+    all_types = ['Abstract', 'Abstract Expressionist', 'Contemporary', 'Cubism', 'Expressionism', 'Figurative', 'Geometric', 'Minimalism', 'Modern', 'Nanyang', 'Pop Art', 'Realism', 'Renaissance', 'Surrealism']
 
     search_criteria = {}
     print (search_criteria)
     if search_terms is not None and search_terms is not "":
-        search_criteria["title", "artist"] = re.compile(r'{}'.format(search_terms), re.I)
-        # search_criteria["artist"] = re.compile(r'{}'.format(search_terms), re.I)
+        search_criteria["title"] = re.compile(r'{}'.format(search_terms), re.I)
 
-#     # if country != None and country != "Any":
-#     #     search_criteria['address.country'] = country 
-        
-#     # if len(must_have) > 0:
-#     #     search_criteria['amenities'] = {
-#     #         '$all' : must_have 
-#     #   }
+    if len(must_have) > 0:
+        search_criteria['all_types'] = {
+            '$all' : must_have 
+        }
         
     
         
     print (search_criteria)
-#     for display
-#     if search_terms is None:
-#         search_terms =""
+    # # for display
+    # if search_terms is None:
+    #     search_terms =""
     
     if search_terms is None:
         search_terms = ""
     
     conn = get_connection()
-    cursor = conn[DATABASE_NAME]["artworksAndConsigners"].find(search_criteria)
+    cursor = conn[DATABASE_NAME]["artworksAndConsigners"].find(search_criteria).limit(10)
     return render_template("index.template.html", results=cursor, 
-        search_terms=search_terms, title=title, artist=artist) 
-        
-#         # countries=countries,
-#         # amentities=amentities, must_have=must_have)
+        search_terms=search_terms, title=title, all_types=all_types, must_have=must_have)
 
 # UPDATE************************************************************************
 
@@ -111,10 +103,11 @@ def show_edit_artwork_form(artwork_id):
     })
     
     results = artwork['type']
-    all_types = ['Abstract', 'Abstract Expressionist', 'Renaissance', 'Impressionism', 'Painting', 'Acrylic']
-
+    all_styles = ['Abstract', 'Abstract Expressionist', 'Contemporary', 'Cubism', 'Expressionism', 'Figurative', 'Geometric', 'Minimalism', 'Modern', 'Nanyang', 'Pop Art', 'Realism', 'Renaissance', 'Surrealism']
+    all_types = ['Acrylic', 'Canvas', 'Calligraphy', 'Ink', 'Installation', 'Fabric', 'Oil', 'Paper', 'Painting', 'Printmaking', 'Sculpture', 'Watercolour']
+    
     return render_template('edit_artwork.template.html', artworksAndConsigners=artwork, 
-    selected_type = results, all_types=all_types)
+    selected_type = results, all_styles=all_styles, all_types=all_types)
     
 @app.route("/edit-artwork/<artwork_id>", methods=['POST'])
 def process_edit_artwork_form(artwork_id):
@@ -129,7 +122,7 @@ def process_edit_artwork_form(artwork_id):
 
     conn = get_connection()
     conn[DATABASE_NAME]["artworksAndConsigners"].update({
-        '_id': 'ObjectId(artwork_id)'
+        '_id': ObjectId(artwork_id)
     }, {
        "image" : image,
         "artist" : artist,
@@ -148,13 +141,12 @@ def process_edit_artwork_form(artwork_id):
 
 @app.route('/confirm-delete-artwork/<artwork_id>')
 def confirm_delete_artwork(artwork_id):
-    artist = request.form.get('artist')
-    title = request.form.get('title')
+    
     artwork = conn[DATABASE_NAME]["artworksAndConsigners"].find_one({
-        '_id': 'ObjectId(artwork_id)',
+        '_id': ObjectId(artwork_id)
     }, {
-        "title": title,
-        "artist": artist
+        "title": 1,
+        "artist": 1
     })
     
     return render_template('confirm_delete_artwork.template.html', artworksAndConsigners=artwork)
@@ -162,7 +154,7 @@ def confirm_delete_artwork(artwork_id):
 @app.route('/delete-artwork/<artwork_id>')
 def delete_artwork(artwork_id):
     conn[DATABASE_NAME]["artworksAndConsigners"].delete_one({
-        '_id': 'ObjectId(artwork_id)'
+        '_id': ObjectId(artwork_id)
     })
     
     return redirect('/')
