@@ -37,8 +37,6 @@ def process_add_artwork_form():
     dimensions = request.form['dimensions']
     medium = request.form['medium']
     description = request.form['description']
-    
-    # pass value as ARRAY
     type = request.form.getlist('type')
     
     conn = get_connection()
@@ -50,8 +48,6 @@ def process_add_artwork_form():
         "dimensions" : dimensions,
         "medium" : medium,
         "description" : description,
-        
-    # pass value as ARRAY
         "type" : type
     })
     
@@ -104,7 +100,7 @@ def show_edit_artwork_form(artwork_id):
     
     results = artwork['type']
     all_styles = ['Abstract', 'Abstract Expressionist', 'Contemporary', 'Cubism', 'Expressionism', 'Figurative', 'Geometric', 'Minimalism', 'Modern', 'Nanyang', 'Pop Art', 'Realism', 'Renaissance', 'Surrealism']
-    all_types = ['Acrylic', 'Canvas', 'Calligraphy', 'Ink', 'Installation', 'Fabric', 'Oil', 'Paper', 'Painting', 'Printmaking', 'Sculpture', 'Watercolour']
+    all_types = ['Acrylic', 'Canvas', 'Calligraphy', 'Ink', 'Installation', 'Fabric', 'Oil', 'Paper', 'Painting', 'Portrait', 'Printmaking', 'Sculpture', 'Watercolour']
     
     return render_template('edit_artwork.template.html', artworksAndConsigners=artwork, 
     selected_type = results, all_styles=all_styles, all_types=all_types)
