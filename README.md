@@ -13,3 +13,5 @@ or visit https://docs.aws.amazon.com/console/cloud9/ for our documentation.
 
 Happy coding!
 # artwork-inventory
+
+searchbox credits: https://www.jquery-az.com/bootstrap-search-box-with-additional-filters-2-demos/

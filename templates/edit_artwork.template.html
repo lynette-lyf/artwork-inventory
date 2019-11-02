@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <title>Add Artwork</title>
+    <title>Update: {{artworksAndConsigners["title"]}} by {{artworksAndConsigners["artist"]}}</title>
   </head>
   <body>
     <div class='container'>
@@ -45,8 +45,8 @@
           </div>
             
             <div class='form-group'>
-                <label>Description (optional)</label>
-                <textarea class="form-control" rows="3" name='description'>{{artworksAndConsigners["description"]}}</textarea>
+                <label>Description (max 650 characters)</label>
+                <textarea class="form-control" rows="5" maxlength='650' name='description'>{{artworksAndConsigners["description"]}}</textarea>
             </div>
             
             <p>Please select all that apply.</p>
@@ -54,8 +54,8 @@
             <div class='form-group'>
                 <p>Style: </p>
                 {%for t in all_styles %}
-                <input type="checkbox" name="style" value="{{t}}"
-                {%if t in filter %}
+                <input type="checkbox" name="type" value="{{t}}"
+                {%if t in selected_type %}
                 checked
                 {%endif%}
                 /><label>{{t}}</label>
@@ -66,7 +66,7 @@
                 <p>Type:</p>
                 {%for t in all_types %}
                 <input type="checkbox" name="type" value="{{t}}"
-                {%if t in filter %}
+                {%if t in selected_type %}
                 checked
                 {%endif%}
                 /><label>{{t}}</label>

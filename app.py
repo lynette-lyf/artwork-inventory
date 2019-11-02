@@ -90,7 +90,7 @@ def show_edit_artwork_form(artwork_id):
     all_types = ['Acrylic', 'Canvas', 'Calligraphy', 'Ink', 'Installation', 'Fabric', 'Oil', 'Paper', 'Painting', 'Portrait', 'Printmaking', 'Sculpture', 'Watercolour']
     
     return render_template('edit_artwork.template.html', artworksAndConsigners=artwork, 
-    selected_type = results, all_styles=all_styles, all_types=all_types)
+    selected_type=results, all_styles=all_styles, all_types=all_types)
     
 @app.route("/edit-artwork/<artwork_id>", methods=['POST'])
 def process_edit_artwork_form(artwork_id):

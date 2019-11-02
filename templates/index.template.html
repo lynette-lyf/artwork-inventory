@@ -20,6 +20,8 @@
       <style>
 body {
     padding-top: 50px;
+    font-family: Arial;
+    font-size: 15px;
 }
 .dropdown.dropdown-lg .dropdown-menu {
     margin-top: -1px;
@@ -48,6 +50,56 @@ body {
         min-width: 500px;
     }
 }
+
+.artist {
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 3vh;
+    line-height:10%;
+    margin-top:15px;
+}
+
+.title {
+    font-style: italic;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 1.8vh;
+    margin-right: 2px;
+    line-height:10%;
+}
+
+.year {
+    font-style: italic;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 400;
+    font-size: 1.8vh;
+    margin-right: 2px;
+}
+
+.medium, .dimensions {
+    letter-spacing: 1px;
+    margin-bottom:0px;
+}
+
+.description {
+    text-align: justify;
+    margin-top: 20px;
+}
+
+.tag-label {
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+
+.tags {
+    text-transform: uppercase;
+    font-size: 12px;
+    margin-top: 0px;
+}
+
     </style>
   
   
@@ -125,25 +177,21 @@ body {
                    <img src=' {{ each_result['image'] }} ' style="max-height:500px; max-width:500px">
                 </td>
                 <td>
-                    <i>{{ each_result['title'] }} </i><br>
-                    {{ each_result['artist'] }} <br>
-                    {{ each_result['description'] }}
-                </td>
-                <td>
-                    Year: {{ each_result['year'] }} <br>
-                    Dimensions: {{ each_result['dimensions'] }} <br>
-                    Medium: {{ each_result['medium'] }}
-                </td>
-                <td>
+                    <p class="artist">{{ each_result['artist'] }}</p>
+                    <span class="title">{{ each_result['title'] }}, </span>
+                    <span class="year"> {{ each_result['year'] }}</span>
+                    <p class="medium">{{ each_result['medium'] }}</p>
+                    <p class="dimensions">{{ each_result['dimensions'] }}</p>
+                    <p class="description">{{ each_result['description'] }}</p>
+                    
+                    <p class="tag-label">Tags:</p>
                     {% for each_type in each_result['type'] %}
-                    <span>{{ each_type }}</span>&nbsp;
+                    <span class="tags">{{ each_type }} /</span>
                     {%endfor%}
                 </td>
                 <td>
-                    <a href="edit-artwork/{{each_result['_id']}}" <i class="fa fa-pencil-square-o">Edit</i></a>
-                </td>
-                <td>
-                    <a href="confirm-delete-artwork/{{each_result['_id']}}" <i class="fa fa-times">Delete</a>  
+                    <a href="edit-artwork/{{each_result['_id']}}" <i class="fa fa-pencil-square-o">Edit</i></a><br>
+                    <a href="confirm-delete-artwork/{{each_result['_id']}}" <i class="fa fa-times">Delete</a>
                     </form>
                 </td>
             </tr>
