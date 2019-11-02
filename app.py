@@ -18,8 +18,14 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
+    
+    filter = request.args.getlist('filter')
+    
+    all_styles = ['Abstract', 'Abstract Expressionist', 'Contemporary', 'Cubism', 'Expressionism', 'Figurative', 'Geometric', 'Minimalism', 'Modern', 'Nanyang', 'Pop Art', 'Realism', 'Renaissance', 'Surrealism']
+    all_types = ['Acrylic', 'Canvas', 'Calligraphy', 'Ink', 'Installation', 'Fabric', 'Oil', 'Paper', 'Painting', 'Portrait', 'Printmaking', 'Sculpture', 'Watercolour']
+    
     artworksAndConsigners = conn[DATABASE_NAME]['artworksAndConsigners'].find()
-    return render_template('index.template.html', results=artworksAndConsigners)
+    return render_template('index.template.html', results=artworksAndConsigners, filter=filter, all_styles=all_styles, all_types=all_types)
 
 
 # CREATE************************************************************************

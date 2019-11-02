@@ -7,7 +7,9 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+ 
+    
     <title>Artwork Database</title>
   </head>
   <body>
@@ -17,19 +19,36 @@
             <div class='form-group'>
                 <input placeholder='Search by Artist or Title' type="text" value="{{search_terms}}" name='search-by' class="form-control mb-1"/>
             </div>
+            
+             <div class='form-group'>
+                <p>Filter by style:</p>
+                {%for t in all_styles %}
+                <input type="checkbox" name="style" value="{{t}}"
+                {%if t in filter %}
+                checked
+                {%endif%}
+                /><label>{{t}}</label>
+                {%endfor%}
+            </div>
+            
+            <div class='form-group'>
+                <p>Filter by type:</p>
+                {%for t in all_types %}
+                <input type="checkbox" name="type" value="{{t}}"
+                {%if t in filter %}
+                checked
+                {%endif%}
+                /><label>{{t}}</label>
+                {%endfor%}
+            </div>
+            
             <input type="submit" class="btn btn-primary" value="Search"/>
         </form>
         
-        <label>Filter by type:</label>
-            
-            <div class="form-check">
-            <input class="form-check-input" type='checkbox' value='Abstract' id="type" name="type">
-            <label class="form-check-label" for="Abstract">Abstract</label>
-            </div>
         
-        <a href="add-artwork" class="btn btn-primary">
-            Add Artwork
-        </a>
+        <a href="add-artwork" class="btn btn-default"><i class="fa fa-plus-square">Add Artwork</i></a>
+        
+    
         
         <table class='table'>
             <thead>
@@ -69,10 +88,10 @@
                     {%endfor%}
                 </td>
                 <td>
-                    <a href="edit-artwork/{{each_result['_id']}}">Edit</a>
+                    <a href="edit-artwork/{{each_result['_id']}}" <i class="fa fa-pencil-square-o">Edit</i></a>
                 </td>
                 <td>
-                    <a href="confirm-delete-artwork/{{each_result['_id']}}">Delete</a>  
+                    <a href="confirm-delete-artwork/{{each_result['_id']}}" <i class="fa fa-times">Delete</a>  
                     </form>
                 </td>
             </tr>
