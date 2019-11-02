@@ -147,6 +147,14 @@ def delete_artwork(artwork_id):
     })
     
     return redirect('/')
+    
+# INFORMATION FOR ART STYLES****************************************************
+@app.route('/information/artstyles')
+def art_style():
+    conn = get_connection()
+    styles = conn[DATABASE_NAME]['artstyles'].find()
+    return render_template('artstyles.template.html', results=styles)
+
 
 # "magic code" -- boilerplate
 if __name__ == '__main__':
