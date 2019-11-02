@@ -74,7 +74,6 @@ def process_add_artwork_form():
         "type" : type
     })
     
-    # redirect back to root url
     return redirect("/")
 
 # UPDATE************************************************************************
