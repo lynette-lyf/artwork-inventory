@@ -51,6 +51,16 @@
     
 }
 
+h1 {
+    color:white;
+    text-transform: lowercase;
+    font-size:14px;
+    position: absolute;
+    z-index:1;
+    top:43px;
+    left:200px;
+}
+
 
 
 #home, #contribute, #information {
@@ -160,7 +170,8 @@
   <body>
     
     
-<img id="logo" style="max-height:100px;" src="static/img/delete.png"/>
+<img id="logo" style="max-height:100px;" src="/static/img/delete.png"/>
+<h1>{{artworksAndConsigners["title"]}} by {{artworksAndConsigners["artist"]}}</h1>
 
 <nav class="navbar navbar-expand-lg navbar-default">
   <a class="navbar-brand" href="#">&nbsp;</a>
@@ -174,10 +185,10 @@
           <a href="/" id="home" class="btn btn-default"><i class="fa fa-home"></i>    Home</a>
       </li>
      <li class="nav-item">
-          <a href="add-artwork" id="contribute" class="btn btn-default"><i class="fa fa-plus"></i>    Contribute</a>
+          <a href="/add-artwork" id="contribute" class="btn btn-default"><i class="fa fa-plus"></i>    Contribute</a>
       </li>
       <li class="nav-item">
-        <a href="information/artstyles" id="information" class="btn btn-default"><i class="fa fa-info"></i>    Information</a>
+        <a href="/information/artstyles" id="information" class="btn btn-default"><i class="fa fa-info"></i>    Information</a>
       </li>
     </ul>
    
