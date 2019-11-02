@@ -1,6 +1,83 @@
 body {
-    padding-top: 50px;
+    font-family: Arial;
+    font-size: 15px;
+    color: black;
 }
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  border-left: 0;
+  background: white;
+}
+
+::-webkit-scrollbar-track {
+  background: white;
+}
+
+::-webkit-scrollbar-thumb {
+  background: black;
+  border-radius: 0;
+}
+
+.navbar-default {
+    background-color: black;
+}
+
+
+#logo {
+    position: absolute;
+    z-index:1;
+    top:-4px;
+}
+
+#home, #contribute, #information {
+    font-family: Arial;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing:1px;
+    background-color: black;
+    margin-right:15px;
+}
+
+#submit {
+    font-family: Arial;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing:1px;
+    background-color: grey;
+    margin-right:15px;
+    border-radius:0px;
+    height:31px;
+    margin-top:3px;
+}
+#home:hover, #contribute:hover, #information:hover, #submit:hover {
+    background-color: white;
+    color:black;
+}
+
+#search-by {
+    border-radius:0px;
+    font-family: Arial;
+    font-weight:bold;
+    color: black;
+    text-transform: uppercase;
+    font-size: 12px;
+    margin-top:3px;
+    border-width:0px;
+}
+
+#caret-dropdown {
+    color:grey;
+    background-color:white;
+    height:31px;
+    margin-top:3px;
+}
+
 .dropdown.dropdown-lg .dropdown-menu {
     margin-top: -1px;
     padding: 4px 15px;
@@ -15,8 +92,21 @@ body {
     margin-right: 0;
 }
 
+@media (max-width: 994px) {
+    .img-fluid {
+        max-width:100%
+    }
+    
+    #home {
+        margin-top:2rem;
+    }
+}
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 995px) {
+    .navbar-nav {
+        align-items: end;
+    }
+    
     #boot-search-box {
         width: 500px;
         margin: 0 auto;
@@ -27,4 +117,74 @@ body {
     .dropdown.dropdown-lg .dropdown-menu {
         min-width: 500px;
     }
+    
+    .img-fluid {
+        max-height:500px;
+        max-width:500px
+    }
+}
+
+.artist {
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 3vh;
+    line-height:10%;
+    margin-top:15px;
+}
+
+.title {
+    font-style: italic;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 1.8vh;
+    margin-right: 2px;
+    line-height:10%;
+}
+
+.year {
+    font-style: italic;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 400;
+    font-size: 1.8vh;
+    margin-right: 2px;
+}
+
+.medium, .dimensions {
+    letter-spacing: 1px;
+    margin-bottom:0px;
+}
+
+.description {
+    text-align: justify;
+    margin-top: 20px;
+}
+
+.tag-label {
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+
+.tags {
+    text-transform: uppercase;
+    font-size: 12px;
+    margin-top: 0px;
+}
+
+.action {
+    text-decoration: none;
+    color: black;
+    font-family: Arial;
+    text-transform: uppercase;
+    font-size: 10px;
+    margin:5px;
+}
+
+.action:hover {
+    color:white;
+    background-color:black;
+    border-radius:0px;
+    border-width:0px;;
 }

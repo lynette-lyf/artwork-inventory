@@ -15,3 +15,5 @@ Happy coding!
 # artwork-inventory
 
 searchbox credits: https://www.jquery-az.com/bootstrap-search-box-with-additional-filters-2-demos/
+
+customize navbar credits: https://work.smarchal.com/twbscolor/css/e74c3cc0392becf0f1ffbbbc0

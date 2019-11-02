@@ -11,18 +11,91 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
     <!-- Google Fonts API -->
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,600,800&display=swap" rel="stylesheet">
-    <link href="static/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
     
     <title>Artwork Database</title>
-  </head>
-  
-  
-      <style>
-body {
+    
+<style>
+    body {
     font-family: Arial;
     font-size: 15px;
     color: black;
 }
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  border-left: 0;
+  background: white;
+}
+
+::-webkit-scrollbar-track {
+  background: white;
+}
+
+::-webkit-scrollbar-thumb {
+  background: black;
+  border-radius: 0;
+}
+
+.navbar-default {
+    background-color: black;
+}
+
+
+#logo {
+    position: absolute;
+    z-index:1;
+    top:-4px;
+}
+
+#home, #contribute, #information {
+    font-family: Arial;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing:1px;
+    background-color: black;
+    margin-right:15px;
+}
+
+#submit {
+    font-family: Arial;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing:1px;
+    background-color: grey;
+    margin-right:15px;
+    border-radius:0px;
+    height:31px;
+    margin-top:3px;
+}
+#home:hover, #contribute:hover, #information:hover, #submit:hover {
+    background-color: white;
+    color:black;
+}
+
+#search-by {
+    border-radius:0px;
+    font-family: Arial;
+    font-weight:bold;
+    color: black;
+    text-transform: uppercase;
+    font-size: 12px;
+    margin-top:3px;
+    border-width:0px;
+}
+
+#caret-dropdown {
+    color:grey;
+    background-color:white;
+    height:31px;
+    margin-top:3px;
+}
+
 .dropdown.dropdown-lg .dropdown-menu {
     margin-top: -1px;
     padding: 4px 15px;
@@ -37,13 +110,21 @@ body {
     margin-right: 0;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 994px) {
     .img-fluid {
         max-width:100%
     }
+    
+    #home {
+        margin-top:2rem;
+    }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 995px) {
+    .navbar-nav {
+        align-items: end;
+    }
+    
     #boot-search-box {
         width: 500px;
         margin: 0 auto;
@@ -115,14 +196,20 @@ body {
     color: black;
     font-family: Arial;
     text-transform: uppercase;
-    font-size: 12px;
+    font-size: 10px;
+    margin:5px;
 }
 
-
-
-
-    </style>
+.action:hover {
+    color:white;
+    background-color:black;
+    border-radius:0px;
+    border-width:0px;;
+}
+</style>
+  </head>
   
+
   
   
   
@@ -130,27 +217,35 @@ body {
   
   
   <body>
-      
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a id="logo" class="navbar-brand" href="index.template.html"><img style="max-height:100px;" src="static/img/logo.png"/></a>
+
+<img id="logo" style="max-height:100px;" src="static/img/logo.png"/>
+
+<nav class="navbar navbar-expand-lg navbar-default">
+  <a class="navbar-brand" href="#">&nbsp;</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+    <span class="navbar-toggler-icon"> <i class="fa fa-bars" style="color:#fff; font-size:28px;"></i></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+  <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+    <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="#">Information</a>
+          <a href="#" id="home" class="btn btn-default"><i class="fa fa-home"></i>    Home</a>
+      </li>
+      <li class="nav-item">
+          <a href="add-artwork" id="contribute" class="btn btn-default"><i class="fa fa-plus"></i>    Contribute</a>
+      </li>
+      <li class="nav-item">
+        <a href="#" id="information" class="btn btn-default"><i class="fa fa-info"></i>    Information</a>
       </li>
     </ul>
     <form method="GET" class="form-inline my-2 my-lg-0">
         <div class="input-group" id="boot-search-box">
-      <input class="form-control mr-sm-2" type="text" value="{{search_terms}}" name='search-by' placeholder="Search by artwork title">
+      <input class="form-control" type="text" value="{{search_terms}}" id='search-by' name='search-by' placeholder="Search by artwork title">
       
        <div class="input-group-btn">
                     <div class="btn-group" role="group">
                         <div class="dropdown dropdown-lg">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+                            <button type="button" id="caret-dropdown" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
                         
                             <div class="dropdown-menu dropdown-menu-right" role="menu">
                                 
@@ -186,7 +281,10 @@ body {
                         </div>
                     </div>
                     
-                        <input type="submit" class="btn btn-primary" value="Search"/>  
+                        
+                        <button type="submit" id="submit" class="btn btn-default">
+                            <i class="fa fa-search"></i>    Submit
+                        </button>
         </div>
   </div>
 </nav>
@@ -198,10 +296,10 @@ body {
     <div class='container'>
         
 <form method="GET">
-<div class="container-fluid">
+<div class="container-fluid mt-5 mb-5">
 	
             
-        <a href="add-artwork" class="btn btn-default"><i class="fa fa-plus-square">Add Artwork</i></a>
+        
         
         
             
@@ -230,18 +328,17 @@ body {
                 
                  <div class="col-lg-1 col-md-1 col-sm-2">   
                     
-                    <button id="more-actions" class="btn btn-dark" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    <button id="more-actions" class="btn btn-nobg" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                     <i class="fa fa-chevron-right"></i>
                     </button>
     
             <div class="collapse" id="collapseExample">
-              <div class="actions">
     
-    <a class="action" href="edit-artwork/{{each_result['_id']}}"><i class="fa fa-pencil-square-o fa-lg"></i>  Edit</a>
-    <a class="action" href="confirm-delete-artwork/{{each_result['_id']}}"><i class="fa fa-times fa-lg"> </i>  Delete</a>
+    <a class="action" href="edit-artwork/{{each_result['_id']}}"><i class="fa fa-pencil-square-o fa-lg"></i> Edit</a>
+    <a class="action" href="confirm-delete-artwork/{{each_result['_id']}}"><i class="fa fa-times fa-lg"> </i> Delete</a>
     
               </div>
-            </div>
+            
 </div>
 
 </div>
