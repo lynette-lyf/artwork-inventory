@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 import os
 from bson import ObjectId
 import re
@@ -16,17 +16,34 @@ def get_connection():
     
 app = Flask(__name__)
 
+# READ**************************************************************************
+
 @app.route('/')
 def index():
-    
+    search_terms = request.args.get('search-by')
     filter = request.args.getlist('filter')
     
     all_styles = ['Abstract', 'Abstract Expressionist', 'Contemporary', 'Cubism', 'Expressionism', 'Figurative', 'Geometric', 'Minimalism', 'Modern', 'Nanyang', 'Pop Art', 'Realism', 'Renaissance', 'Surrealism']
     all_types = ['Acrylic', 'Canvas', 'Calligraphy', 'Ink', 'Installation', 'Fabric', 'Oil', 'Paper', 'Painting', 'Portrait', 'Printmaking', 'Sculpture', 'Watercolour']
     
-    artworksAndConsigners = conn[DATABASE_NAME]['artworksAndConsigners'].find()
-    return render_template('index.template.html', results=artworksAndConsigners, filter=filter, all_styles=all_styles, all_types=all_types)
-
+    search_criteria = {}
+    print (search_criteria)
+    if search_terms is not None and search_terms is not "":
+        search_criteria["title"] = re.compile(r'{}'.format(search_terms), re.I)
+        
+    if len(filter) > 0:
+        search_criteria['all_styles', 'all_types'] = {
+            '$all' : filter
+        }
+        
+    print (search_criteria)
+    
+    if search_terms is None:
+        search_terms = ""
+    
+    conn = get_connection()
+    artworksAndConsigners = conn[DATABASE_NAME]['artworksAndConsigners'].find(search_criteria)
+    return render_template('index.template.html', results=artworksAndConsigners, search_terms=search_terms, filter=filter, all_styles=all_styles, all_types=all_types)
 
 # CREATE************************************************************************
 
@@ -59,41 +76,6 @@ def process_add_artwork_form():
     
     # redirect back to root url
     return redirect("/")
-    
-# READ**************************************************************************
-
-@app.route('/')
-def search_index():
-    search_terms = request.args.get('search-by')
-    title = request.args.get('title')
-    must_have = request.args.getlist('must-have')
-    
-    all_types = ['Abstract', 'Abstract Expressionist', 'Contemporary', 'Cubism', 'Expressionism', 'Figurative', 'Geometric', 'Minimalism', 'Modern', 'Nanyang', 'Pop Art', 'Realism', 'Renaissance', 'Surrealism']
-
-    search_criteria = {}
-    print (search_criteria)
-    if search_terms is not None and search_terms is not "":
-        search_criteria["title"] = re.compile(r'{}'.format(search_terms), re.I)
-
-    if len(must_have) > 0:
-        search_criteria['all_types'] = {
-            '$all' : must_have 
-        }
-        
-    
-        
-    print (search_criteria)
-    # # for display
-    # if search_terms is None:
-    #     search_terms =""
-    
-    if search_terms is None:
-        search_terms = ""
-    
-    conn = get_connection()
-    cursor = conn[DATABASE_NAME]["artworksAndConsigners"].find(search_criteria).limit(10)
-    return render_template("index.template.html", results=cursor, 
-        search_terms=search_terms, title=title, all_types=all_types, must_have=must_have)
 
 # UPDATE************************************************************************
 
