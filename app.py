@@ -128,8 +128,14 @@ def confirm_delete_artwork(artwork_id):
     artwork = conn[DATABASE_NAME]["artworksAndConsigners"].find_one({
         '_id': ObjectId(artwork_id)
     }, {
-        "title": 1,
-        "artist": 1
+        "image" : 1,
+        "artist" : 1,
+        "title" : 1,
+        "year" : 1,
+        "dimensions" : 1,
+        "medium" : 1,
+        "description" : 1,
+        "type": 1
     })
     
     return render_template('confirm_delete_artwork.template.html', artworksAndConsigners=artwork)
