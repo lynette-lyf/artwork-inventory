@@ -121,8 +121,8 @@ def process_edit_artwork_form(artwork_id):
     
 # FAVOURITE FUNCTION************************************************************
 
-@app.route('/button', methods=["POST"])
-def button(artwork_id):
+@app.route('/', methods=["POST"])
+def show_vote_button(artwork_id):
     votes = request.form.get('votes')
     
     if request.method == "POST":
@@ -133,11 +133,9 @@ def button(artwork_id):
         '_id': ObjectId(artwork_id)
     }, {
         "votes": votes
-    })
-    return redirect("/", votes=votes)
-
+    })  
     
-    
+    return redirect("/")
     
     
 # DELETE************************************************************************

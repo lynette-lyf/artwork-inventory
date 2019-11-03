@@ -87,6 +87,7 @@
     font-size: 12px;
     margin-top:3px;
     border-width:0px;
+    min-width:400px;
 }
 
 #caret-dropdown {
@@ -94,11 +95,6 @@
     background-color:white;
     height:31px;
     margin-top:3px;
-}
-
-.dropdown.dropdown-lg .dropdown-menu {
-    margin-top: -1px;
-    padding: 4px 15px;
 }
 
 .btn-group .btn {
@@ -110,6 +106,10 @@
     margin-right: 0;
 }
 
+.dropdown.dropdown-lg {
+        position: static !important;
+    }
+    
 @media (max-width: 994px) {
     .img-fluid {
         max-width:100%
@@ -117,6 +117,14 @@
     
     #home {
         margin-top:2rem;
+    }
+    
+    .dropdown.dropdown-lg .dropdown-menu {
+        width:100vw;
+    }
+    
+    #search-by {
+    min-width:100px;
     }
 }
 
@@ -126,14 +134,11 @@
     }
     
     #boot-search-box {
-        width: 500px;
+        width: auto;
         margin: 0 auto;
     }
-    .dropdown.dropdown-lg {
-        position: static !important;
-    }
     .dropdown.dropdown-lg .dropdown-menu {
-        min-width: 500px;
+        width:20vw;
     }
     
     .img-fluid {
@@ -141,6 +146,24 @@
         max-width:500px
     }
 }
+
+.form-inline label {
+    justify-content:start;
+}
+
+label {
+    max-width:170px;
+}
+
+.label {
+    font-family: Arial;
+    font-size: 12px;
+    color: black;
+    text-transform: uppercase;
+    letter-spacing:1px;
+    font-weight:bold;
+}
+
 
 .artist {
     font-family: 'Work Sans', sans-serif;
@@ -185,11 +208,20 @@
     margin-bottom: 0px;
 }
 
+#heart:hover  {
+    color:red;
+}
+
+#heart {
+    margin-left:19vw;
+}
+
 .tags {
     text-transform: uppercase;
     font-size: 12px;
     margin-top: 0px;
 }
+
 
 .action {
     text-decoration: none;
@@ -206,6 +238,12 @@
     border-radius:0px;
     border-width:0px;;
 }
+
+button:focus, input:focus {
+  outline:0!important;
+  box-shadow: none!important;
+}
+
 </style>
   </head>
   
@@ -252,7 +290,9 @@
                                   <div class="form-group">
                                     <div class="label"><label for="filter">Filter by style:</label></div>
                                     
-               
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                        <div class="col-6">
                                       {%for t in all_styles %}
                                       <input type="checkbox" name="style" value="{{t}}"
                                       {%if t in filter %}
@@ -260,11 +300,14 @@
                                       {%endif%}
                                       /><label>{{t}}</label>
                                       {%endfor%}
-                                  </div>
+                                      </div>
                                   
                                   
+                                  <div class="col-6">
                                   <div class="form-group">
                                   <div class="label"><label for="filter">Filter by type:</label></div>
+                                  
+                                  <div class="container-fluid">
                                       {%for t in all_types %}
                                       <input type="checkbox" name="type" value="{{t}}"
                                       {%if t in filter %}
@@ -272,10 +315,14 @@
                                       {%endif%}
                                       /><label>{{t}}</label>
                                       {%endfor%}
+                                    </div>
                                 </div>
-
-                                  <input type="submit" class="btn btn-primary" value="Search"/>         
+                                </div>
+                                </div>
+                                      
                                 </form>
+                                
+                                </div>
                                  </div>
                             </div>
                         </div>
@@ -323,17 +370,24 @@
                     <p class="tag-label">Tags:</p>
                     {% for each_type in each_result['type'] %}
                     <span class="tags">{{ each_type }} /</span>
+                    
+                    
                     {%endfor%}
+                    <div class="justify-content-end">
+                    <form action="/button" class='form' method="POST">
+                    <button type="submit" id="votes" class="btn btn-default">
+                        <i id="heart" class="fa fa-heart fa-lg" aria-hidden="true"></i>  {{ each_result['votes'] }}
+                    </button>
+                </form>
                 </div>
-                
+                </div>
                 
 
                 
-                <form action="/button" class='form' method="POST">
-                    <button type="submit" id="votes" class="btn btn-default">
-                        Favourited: {{ each_result['votes'] }} times
-                    </button>
-                </form>
+                
+                
+                
+
                 
                  <div class="col-lg-1 col-md-1 col-sm-2">   
                     
