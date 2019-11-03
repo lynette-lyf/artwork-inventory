@@ -119,6 +119,26 @@ def process_edit_artwork_form(artwork_id):
     
     return redirect("/")
     
+# FAVOURITE FUNCTION************************************************************
+
+@app.route('/button', methods=["POST"])
+def button(artwork_id):
+    votes = request.form.get('votes')
+    
+    if request.method == "POST":
+        votes += 1  # Note this increment here.
+    print (votes)
+    conn = get_connection()
+    conn[DATABASE_NAME]["artworksAndConsigners"].update({
+        '_id': ObjectId(artwork_id)
+    }, {
+        "votes": votes
+    })
+    return redirect("/", votes=votes)
+
+    
+    
+    
     
 # DELETE************************************************************************
 
