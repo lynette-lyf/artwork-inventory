@@ -121,21 +121,21 @@ def process_edit_artwork_form(artwork_id):
     
 # FAVOURITE FUNCTION************************************************************
 
-@app.route('/', methods=["POST"])
-def show_vote_button(artwork_id):
-    votes = request.form.get('votes')
+# @app.route('/', methods=["POST"])
+# def show_vote_button(artwork_id):
+#     votes = request.form.get('votes')
     
-    if request.method == "POST":
-        votes += 1  # Note this increment here.
-    print (votes)
-    conn = get_connection()
-    conn[DATABASE_NAME]["artworksAndConsigners"].update({
-        '_id': ObjectId(artwork_id)
-    }, {
-        "votes": votes
-    })  
+#     if request.method == "POST":
+#         votes += 1  # Note this increment here.
+#     print (votes)
+#     conn = get_connection()
+#     conn[DATABASE_NAME]["artworksAndConsigners"].update({
+#         '_id': ObjectId(artwork_id)
+#     }, {
+#         "votes": votes
+#     })  
     
-    return redirect("/")
+#     return redirect("/")
     
     
 # DELETE************************************************************************
@@ -172,6 +172,7 @@ def art_style():
     conn = get_connection()
     styles = conn[DATABASE_NAME]['artstyles'].find()
     return render_template('artstyles.template.html', results=styles)
+    
 
 
 # "magic code" -- boilerplate
