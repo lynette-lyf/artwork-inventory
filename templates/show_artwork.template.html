@@ -40,12 +40,15 @@
 
 .navbar-default {
     background-color: black;
+    position:sticky;
+    top:0px;
+    z-index:1;
 }
 
 
 #logo {
-    position: absolute;
-    z-index:1;
+    position: fixed;
+    z-index:2;
     top:-3px;
 }
 
@@ -53,8 +56,8 @@ h1 {
     color:white;
     text-transform: lowercase;
     font-size:14px;
-    position: absolute;
-    z-index:1;
+    position: fixed;
+    z-index:2;
     top:43px;
     left:240px;
 }
@@ -195,6 +198,10 @@ button:focus, input:focus {
   font-size:15px;
 }
 
+.form-control {
+    font-size:15px;
+    
+}
 
 
     
@@ -306,32 +313,36 @@ button:focus, input:focus {
 <div class="container-fluid">
 <div class='row justify-content-center'>
                      <p class="comment-label pt-4">Comments:</p>
-</div>
-<div class='row justify-content-center'>
+
                     {% for each_comment in artworksAndConsigners['comments'] %}
-                    <span class="comments">"{{ each_comment.comment_comment }}"</span><br>
-</div>
+                    </div>
+
+                    <div class='row justify-content-center'>
+                        <div class="comments">"{{ each_comment.comment_comment }}"</div><br>
+                    </div>
 
 <div class='row justify-content-center'>
-                    <span class="comments"><b>- {{ each_comment.comment_name }}</b></span>
+                    <div class="comments"><b>- {{ each_comment.comment_name }}</b></div>
 </div>
 
                     <hr>
-                    {%endfor%}
+                    
    
                     </form>
+                    {%endfor%}
+    
                     
                     <div class="container-fluid">
                     <form class='form' method="POST">
                           <div class='form-row justify-content-center'>
-                              <div class='col-lg-5 col-sm-10 mb-3 mt-5'>
+                              <div class='col-lg-5 col-sm-10 mb-3 mt-2'>
                                 <input type='text' class='form-control' placeholder='Name' name='comment_name' required/>
                             </div>
                         </div>
                             
                         <div class='form-row justify-content-center'>
                               <div class='col-lg-5 col-sm-10 mb-3'>
-                                <textarea class="form-control" rows="2" placeholder='Leave a comment' name='comment_comment'></textarea>
+                                <textarea class="form-control" rows="4" placeholder='Leave a comment' name='comment_comment'></textarea>
                             </div>
                         </div>
                         
