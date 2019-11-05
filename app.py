@@ -49,7 +49,7 @@ def index():
 @app.route('/artwork/<artwork_id>')
 def show_artwork(artwork_id):
     
-    artwork = conn[DATABASE_NAME]["artworksAndConsigners"].find_one({
+    artworksAndConsigners = conn[DATABASE_NAME]["artworksAndConsigners"].find_one({
         '_id': ObjectId(artwork_id)
     }, {
         "image" : 1,
@@ -60,10 +60,33 @@ def show_artwork(artwork_id):
         "medium" : 1,
         "description" : 1,
         "type": 1,
-        "votes": 1
+        "votes": 1,
+        "comments": 1
     })
     
-    return render_template('show_artwork.template.html', artworksAndConsigners=artwork)
+    return render_template('show_artwork.template.html', artworksAndConsigners=artworksAndConsigners)
+
+# SHOW COMMENT FORM ON EACH INDIVIDUAL ARTWORK**********************************
+
+@app.route('/artwork/<artwork_id>', methods=['POST'])
+def process_add_comment(artwork_id):
+    comments = {
+    'comment_name': request.form.get('comment_name'),
+    'comment_comment' : request.form.get('comment_comment')    
+    }
+    
+    
+    artworksAndConsigners = conn[DATABASE_NAME]['artworksAndConsigners'].update(
+        {
+            "_id": ObjectId(artwork_id)
+        }, 
+        {'$push': {
+            'comments': comments
+        }
+            
+        })
+
+    return redirect(request.url)
 
 # CREATE************************************************************************
 
@@ -80,6 +103,7 @@ def process_add_artwork_form():
     dimensions = request.form['dimensions']
     medium = request.form['medium']
     description = request.form['description']
+    votes = request.form['votes']
     type = request.form.getlist('type')
     
     conn = get_connection()
@@ -91,7 +115,8 @@ def process_add_artwork_form():
         "dimensions" : dimensions,
         "medium" : medium,
         "description" : description,
-        "type" : type
+        "type" : type,
+        "votes": votes
     })
     
     return redirect("/")
@@ -121,6 +146,7 @@ def process_edit_artwork_form(artwork_id):
     dimensions = request.form['dimensions']
     medium = request.form['medium']
     description = request.form['description']
+    votes = request.form['votes']
     type = request.form.getlist('type')
 
     conn = get_connection()
@@ -134,7 +160,8 @@ def process_edit_artwork_form(artwork_id):
         "dimensions" : dimensions,
         "medium" : medium,
         "description" : description,
-        "type": type 
+        "type": type,
+        "votes": votes
     })
     
     return redirect("/")
@@ -155,7 +182,7 @@ def process_edit_artwork_form(artwork_id):
 #         "votes": votes
 #     })  
     
-#     return redirect("/")
+#     return redirect(request.url)
     
     
 # DELETE************************************************************************

@@ -124,6 +124,10 @@ button:focus, input:focus {
   outline:0!important;
   box-shadow: none!important;
 }
+
+#form-votes {
+    display:none;
+}
     
   </style>
   
@@ -210,6 +214,9 @@ button:focus, input:focus {
             <div class='col-6 mb-3'>
                 <label>Medium</label>
                 <input type='text' class='form-control' name='medium' required/>
+            </div>
+            <div class='col-6 mb-3'>
+                <input type='text' id="form-votes" class='form-control' name='votes' value='0'/>
             </div>
           </div>
             
@@ -395,6 +402,7 @@ button:focus, input:focus {
             <input class="form-check-input" type='checkbox' value='Watercolour' id="type" name="type">
             <label class="form-check-label" for="Watercolour">Watercolour</label>
             </div>
+            
             
             </div>
             </div>

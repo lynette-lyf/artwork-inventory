@@ -188,6 +188,15 @@ button:focus, input:focus {
   outline:0!important;
   box-shadow: none!important;
 }
+
+.comment-label{
+  text-transform:uppercase;  
+  font-weight:bold;
+  font-size:15px;
+}
+
+
+
     
   </style>
   
@@ -254,6 +263,9 @@ button:focus, input:focus {
                     {% for each_type in artworksAndConsigners['type'] %}
                     <span class="tags">{{ each_type }} /</span>
                     
+                    
+                    
+                    
                     {%endfor%}
                     <br><br>
                     <div class="justify-content-end">
@@ -288,9 +300,50 @@ button:focus, input:focus {
 </div>
 
 </div>
+
+
+
+<div class="container-fluid">
+<div class='row justify-content-center'>
+                     <p class="comment-label pt-4">Comments:</p>
+</div>
+<div class='row justify-content-center'>
+                    {% for each_comment in artworksAndConsigners['comments'] %}
+                    <span class="comments">"{{ each_comment.comment_comment }}"</span><br>
+</div>
+
+<div class='row justify-content-center'>
+                    <span class="comments"><b>- {{ each_comment.comment_name }}</b></span>
+</div>
+
+                    <hr>
+                    {%endfor%}
    
                     </form>
-
+                    
+                    <div class="container-fluid">
+                    <form class='form' method="POST">
+                          <div class='form-row justify-content-center'>
+                              <div class='col-lg-5 col-sm-10 mb-3 mt-5'>
+                                <input type='text' class='form-control' placeholder='Name' name='comment_name' required/>
+                            </div>
+                        </div>
+                            
+                        <div class='form-row justify-content-center'>
+                              <div class='col-lg-5 col-sm-10 mb-3'>
+                                <textarea class="form-control" rows="2" placeholder='Leave a comment' name='comment_comment'></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class='form-row justify-content-center'>
+                            <div class="col-lg-3 col-sm-5 text-center pb-5">
+                             <button type="submit" id="submit" class="btn btn-default">     Comment</button>
+                            </div>
+                        </div>
+                    </form>
+                    </div>
+                    
+                    
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
