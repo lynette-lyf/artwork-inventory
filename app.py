@@ -167,23 +167,22 @@ def process_edit_artwork_form(artwork_id):
     return redirect("/")
     
 # FAVOURITE FUNCTION************************************************************
-
-# @app.route('/', methods=["POST"])
-# def show_vote_button(artwork_id):
-#     votes = request.form.get('votes')
+@app.route('/', methods=["POST"])
+def process_votes(artwork_id):
+    votes = request.form['votes']
     
-#     if request.method == "POST":
-#         votes += 1  # Note this increment here.
-#     print (votes)
-#     conn = get_connection()
-#     conn[DATABASE_NAME]["artworksAndConsigners"].update({
-#         '_id': ObjectId(artwork_id)
-#     }, {
-#         "votes": votes
-#     })  
+    if request.method == "POST":
+        votes += 1
+        print(votes)
     
-#     return redirect(request.url)
+    conn = get_connection()
+    conn[DATABASE_NAME]["artworksAndConsigners"].update({
+        '_id': ObjectId(artwork_id)
+    }, {
+        "votes": votes
+    })
     
+    return redirect(request.url)
     
 # DELETE************************************************************************
 

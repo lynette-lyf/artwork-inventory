@@ -386,8 +386,8 @@ button:focus, input:focus {
                     
                     {%endfor%}
                     <div class="justify-content-end">
-                    <form action="/button" class='form' method="POST">
-                    <button type="submit" id="votes" value='1' class="btn btn-default">
+                    <form class='form' method="POST">
+                    <button type="submit" id="votes" class="btn btn-default">
                         <i id="heart" class="fa fa-heart fa-lg" aria-hidden="true"></i>  {{ each_result['votes'] }}
                     </button>
                 </form>
