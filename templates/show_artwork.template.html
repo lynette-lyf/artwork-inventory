@@ -139,6 +139,30 @@ h1 {
     margin-top: 0px;
 }
 
+.action {
+    text-decoration: none;
+    color: black;
+    font-family: Arial;
+    text-transform: uppercase;
+    font-size: 10px;
+    margin:5px;
+}
+
+.action:hover {
+    color:white;
+    background-color:black;
+    border-radius:0px;
+    border-width:0px;;
+}
+
+#heart:hover  {
+    color:red;
+}
+
+#heart {
+    margin-left:19vw;
+}
+
 @media (max-width: 994px) {
     .img-fluid {
         max-width:100%
@@ -231,9 +255,24 @@ button:focus, input:focus {
                     <span class="tags">{{ each_type }} /</span>
                     
                     {%endfor%}
-                    </div>
-                    
-                     <div class="col-lg-1 col-md-1 col-sm-2">   
+                    <br><br>
+                    <div class="justify-content-end">
+                    <form action="/button" class='form' method="POST">
+                    <button type="submit" id="votes" class="btn btn-default">
+                        <i id="heart" class="fa fa-heart fa-lg" aria-hidden="true"></i>  {{ artworksAndConsigners['votes'] }}
+                    </button>
+                </form>
+                </div>
+                </div>
+                
+
+                
+                
+                
+                
+
+                
+                 <div class="col-lg-1 col-md-1 col-sm-2">   
                     
                     <button id="more-actions" class="btn btn-nobg" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                     <i class="fa fa-chevron-right"></i>
@@ -247,9 +286,10 @@ button:focus, input:focus {
               </div>
             
 </div>
-                </div>
+
 </div>
-</div>
+   
+                    </form>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

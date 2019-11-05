@@ -59,7 +59,8 @@ def show_artwork(artwork_id):
         "dimensions" : 1,
         "medium" : 1,
         "description" : 1,
-        "type": 1
+        "type": 1,
+        "votes": 1
     })
     
     return render_template('show_artwork.template.html', artworksAndConsigners=artwork)
