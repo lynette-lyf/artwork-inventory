@@ -45,6 +45,25 @@ def index():
     artworksAndConsigners = conn[DATABASE_NAME]['artworksAndConsigners'].find(search_criteria)
     return render_template('index.template.html', results=artworksAndConsigners, search_terms=search_terms, filter=filter, all_styles=all_styles, all_types=all_types)
 
+# VIEW INDIVIDUAL ARTWORK*******************************************************
+@app.route('/artwork/<artwork_id>')
+def show_artwork(artwork_id):
+    
+    artwork = conn[DATABASE_NAME]["artworksAndConsigners"].find_one({
+        '_id': ObjectId(artwork_id)
+    }, {
+        "image" : 1,
+        "artist" : 1,
+        "title" : 1,
+        "year" : 1,
+        "dimensions" : 1,
+        "medium" : 1,
+        "description" : 1,
+        "type": 1
+    })
+    
+    return render_template('show_artwork.template.html', artworksAndConsigners=artwork)
+
 # CREATE************************************************************************
 
 @app.route('/add-artwork')

@@ -244,6 +244,15 @@ button:focus, input:focus {
   box-shadow: none!important;
 }
 
+.viewartwork {
+    text-decoration:none;
+    color:black;
+}
+
+.viewartwork:hover {
+    color:black;
+}
+
 </style>
   </head>
   
@@ -354,15 +363,16 @@ button:focus, input:focus {
             <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-12">
                     
-                   <img class='img-fluid' src='{{ each_result['image'] }}'>
+                   <a href="artwork/{{each_result['_id']}}"><img class='img-fluid' src='{{ each_result['image'] }}'></a>
                    </div>
                    
                    
                    <div class="col-lg-5 col-md-5 col-sm-10">
                
-                    <p class="artist">{{ each_result['artist'] }}</p>
+                     <a class="viewartwork" href="artwork/{{each_result['_id']}}">
+                     <p class="artist">{{ each_result['artist'] }}</p>
                     <span class="title">{{ each_result['title'] }}, </span>
-                    <span class="year"> {{ each_result['year'] }}</span>
+                    <span class="year"> {{ each_result['year'] }}</span></a>
                     <p class="medium">{{ each_result['medium'] }}</p>
                     <p class="dimensions">{{ each_result['dimensions'] }}</p>
                     <p class="description">{{ each_result['description'] }}</p>
