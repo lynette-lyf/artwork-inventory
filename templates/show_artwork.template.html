@@ -334,14 +334,14 @@ button:focus, input:focus {
                     <div class="container-fluid">
                     <form class='form' method="POST">
                           <div class='form-row justify-content-center'>
-                              <div class='col-lg-5 col-sm-10 mb-3 mt-2'>
-                                <input type='text' class='form-control' placeholder='Name' name='comment_name' required/>
+                              <div class='col-lg-4 col-sm-10 mb-3 mt-2'>
+                                <input type='text' class='form-control' maxlength='50' placeholder='Name' name='comment_name' required/>
                             </div>
                         </div>
                             
                         <div class='form-row justify-content-center'>
-                              <div class='col-lg-5 col-sm-10 mb-3'>
-                                <textarea class="form-control" rows="4" placeholder='Leave a comment' name='comment_comment'></textarea>
+                              <div class='col-lg-4 col-sm-10 mb-3'>
+                                <textarea class="form-control" rows="3" maxlength='200' placeholder='Leave a comment' name='comment_comment' required></textarea>
                             </div>
                         </div>
                         
