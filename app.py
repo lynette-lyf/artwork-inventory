@@ -25,6 +25,7 @@ def index():
     
     all_styles = ['Abstract', 'Abstract Expressionist', 'Contemporary', 'Cubism', 'Expressionism', 'Figurative', 'Geometric', 'Minimalism', 'Modern', 'Nanyang', 'Pop Art', 'Realism', 'Renaissance', 'Surrealism']
     all_types = ['Acrylic', 'Canvas', 'Calligraphy', 'Ink', 'Installation', 'Fabric', 'Oil', 'Paper', 'Painting', 'Portrait', 'Printmaking', 'Sculpture', 'Watercolour']
+    all_filters = ['Abstract', 'Abstract Expressionist', 'Contemporary', 'Cubism', 'Expressionism', 'Figurative', 'Geometric', 'Minimalism', 'Modern', 'Nanyang', 'Pop Art', 'Realism', 'Renaissance', 'Surrealism', 'Acrylic', 'Canvas', 'Calligraphy', 'Ink', 'Installation', 'Fabric', 'Oil', 'Paper', 'Painting', 'Portrait', 'Printmaking', 'Sculpture', 'Watercolour']
     
     search_criteria = {}
     print (search_criteria)
@@ -32,11 +33,10 @@ def index():
         search_criteria["title"] = re.compile(r'{}'.format(search_terms), re.I)
         
     if len(filter) > 0:
-        search_criteria['all_styles', 'all_types'] = {
+        search_criteria['all_styles'] = {
             '$all' : filter
         }
         
-    print (search_criteria)
     
     if search_terms is None:
         search_terms = ""
@@ -66,7 +66,7 @@ def show_artwork(artwork_id):
     
     return render_template('show_artwork.template.html', artworksAndConsigners=artworksAndConsigners)
 
-# SHOW COMMENT FORM ON EACH INDIVIDUAL ARTWORK**********************************
+# SHOW COMMENTS & COMMENT FORM ON EACH INDIVIDUAL ARTWORK***********************
 
 @app.route('/artwork/<artwork_id>', methods=['POST'])
 def process_add_comment(artwork_id):
