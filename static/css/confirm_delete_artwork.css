@@ -1,7 +1,8 @@
 body {
     font-family: Arial;
-    font-size: 15px;
+    font-size: 12px;
     color: black;
+    letter-spacing:1px;
 }
 
 ::-webkit-scrollbar {
@@ -22,14 +23,29 @@ body {
 
 .navbar-default {
     background-color: black;
+    top:0px;
+    z-index:1;
 }
 
 
 #logo {
-    position: absolute;
-    z-index:1;
-    top:-4px;
+    position: fixed;
+    z-index:2;
+    top:-3px;
+    
 }
+
+h1 {
+    color:white;
+    text-transform: lowercase;
+    font-size:14px;
+    position: fixed;
+    z-index:2;
+    top:43px;
+    left:200px;
+}
+
+
 
 #home, #contribute, #information {
     font-family: Arial;
@@ -42,86 +58,21 @@ body {
     margin-right:15px;
 }
 
-#submit {
+#update {
     font-family: Arial;
     color: white;
     text-decoration: none;
     text-transform: uppercase;
     font-size: 12px;
     letter-spacing:1px;
-    background-color: grey;
-    margin-right:15px;
+    background-color: black;
+    width:100%;
     border-radius:0px;
-    height:31px;
-    margin-top:3px;
 }
-#home:hover, #contribute:hover, #information:hover, #submit:hover {
+
+#home:hover, #information:hover, #update:hover {
     background-color: white;
     color:black;
-}
-
-#search-by {
-    border-radius:0px;
-    font-family: Arial;
-    font-weight:bold;
-    color: black;
-    text-transform: uppercase;
-    font-size: 12px;
-    margin-top:3px;
-    border-width:0px;
-}
-
-#caret-dropdown {
-    color:grey;
-    background-color:white;
-    height:31px;
-    margin-top:3px;
-}
-
-.dropdown.dropdown-lg .dropdown-menu {
-    margin-top: -1px;
-    padding: 4px 15px;
-}
-
-.btn-group .btn {
-    border-radius: 0;
-    margin-left: -1px;
-}
-.form-horizontal .form-group {
-    margin-left: 0;
-    margin-right: 0;
-}
-
-@media (max-width: 994px) {
-    .img-fluid {
-        max-width:100%
-    }
-    
-    #home {
-        margin-top:2rem;
-    }
-}
-
-@media screen and (min-width: 995px) {
-    .navbar-nav {
-        align-items: end;
-    }
-    
-    #boot-search-box {
-        width: 500px;
-        margin: 0 auto;
-    }
-    .dropdown.dropdown-lg {
-        position: static !important;
-    }
-    .dropdown.dropdown-lg .dropdown-menu {
-        min-width: 500px;
-    }
-    
-    .img-fluid {
-        max-height:500px;
-        max-width:500px
-    }
 }
 
 .artist {
@@ -173,18 +124,28 @@ body {
     margin-top: 0px;
 }
 
-.action {
-    text-decoration: none;
-    color: black;
-    font-family: Arial;
-    text-transform: uppercase;
-    font-size: 10px;
-    margin:5px;
+@media (max-width: 994px) {
+    .img-fluid {
+        max-width:100%
+    }
+    
+    #home {
+        margin-top:2rem;
+    }
 }
 
-.action:hover {
-    color:white;
-    background-color:black;
-    border-radius:0px;
-    border-width:0px;;
+@media screen and (min-width: 995px) {
+    .navbar-nav {
+        align-items: end;
+    }
+  
+    .img-fluid {
+        max-height:500px;
+        max-width:500px
+    }
+} 
+
+button:focus, input:focus {
+  outline:0!important;
+  box-shadow: none!important;
 }

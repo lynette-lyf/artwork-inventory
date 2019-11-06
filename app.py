@@ -25,7 +25,6 @@ def index():
     
     all_styles = ['Abstract', 'Abstract Expressionist', 'Contemporary', 'Cubism', 'Expressionism', 'Figurative', 'Geometric', 'Minimalism', 'Modern', 'Nanyang', 'Pop Art', 'Realism', 'Renaissance', 'Surrealism']
     all_types = ['Acrylic', 'Canvas', 'Calligraphy', 'Ink', 'Installation', 'Fabric', 'Oil', 'Paper', 'Painting', 'Portrait', 'Printmaking', 'Sculpture', 'Watercolour']
-    all_filters = ['Abstract', 'Abstract Expressionist', 'Contemporary', 'Cubism', 'Expressionism', 'Figurative', 'Geometric', 'Minimalism', 'Modern', 'Nanyang', 'Pop Art', 'Realism', 'Renaissance', 'Surrealism', 'Acrylic', 'Canvas', 'Calligraphy', 'Ink', 'Installation', 'Fabric', 'Oil', 'Paper', 'Painting', 'Portrait', 'Printmaking', 'Sculpture', 'Watercolour']
     
     search_criteria = {}
     print (search_criteria)
@@ -33,11 +32,10 @@ def index():
         search_criteria["title"] = re.compile(r'{}'.format(search_terms), re.I)
         
     if len(filter) > 0:
-        search_criteria['all_styles'] = {
+        search_criteria['type'] = {
             '$all' : filter
         }
         
-    
     if search_terms is None:
         search_terms = ""
     
@@ -146,7 +144,7 @@ def process_edit_artwork_form(artwork_id):
     dimensions = request.form['dimensions']
     medium = request.form['medium']
     description = request.form['description']
-    votes = request.form['votes']
+    votes = int(request.form['votes'])
     type = request.form.getlist('type')
 
     conn = get_connection()
@@ -169,11 +167,8 @@ def process_edit_artwork_form(artwork_id):
 # FAVOURITE FUNCTION************************************************************
 @app.route('/', methods=["POST"])
 def process_votes(artwork_id):
-    votes = request.form['votes']
-    
-    if request.method == "POST":
-        votes += 1
-        print(votes)
+    votes = int(request.form['votes']) + 1
+
     
     conn = get_connection()
     conn[DATABASE_NAME]["artworksAndConsigners"].update({
@@ -182,7 +177,7 @@ def process_votes(artwork_id):
         "votes": votes
     })
     
-    return redirect(request.url)
+    return redirect("/")
     
 # DELETE************************************************************************
 
