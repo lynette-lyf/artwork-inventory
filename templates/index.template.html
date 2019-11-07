@@ -125,8 +125,8 @@
                         {% for each_type in each_result['type'] %}
                         <span class="tags">{{ each_type }} /</span> {%endfor%}
                         <div class="justify-content-end">
-                            <!--<form class='form' method="POST">-->
-                            <!--    <input type='text' id="form-votes" class='form-control' name='votes' value='{{ each_result['votes'] }}'/>-->
+                            <form class='form' method="POST">
+                                <input style="display:none" type='text' id="form-votes" class='form-control' name='votes' value='{{ each_result['votes'] }}'/>
                             <button type="submit" id="votes1" class="btn btn-default">
                         <i id="heart" class="fa fa-heart fa-lg" aria-hidden="true"></i>  {{ each_result['votes'] }}
                     </button>
