@@ -170,6 +170,22 @@ h1 {
     }
 } 
 
+#submit {
+    font-family: Arial;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing:1px;
+    background-color: black;
+    width:100%;
+}
+
+#submit:hover {
+    background-color: white;
+    color:black;
+}
+
 button:focus, input:focus {
   outline:0!important;
   box-shadow: none!important;

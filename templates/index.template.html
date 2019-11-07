@@ -57,7 +57,7 @@
                                             <div class="row">
                                                 <div class="col-6">
                                                     {%for t in all_styles %}
-                                                    <input type="checkbox" name="filter" value="{{t}}" {%if t in filter %} checked {%endif%} /><label>{{t}}</label> {%endfor%}
+                                                    <input type="checkbox" id="filter" name="filter" value="{{t}}" {%if t in filter %} checked {%endif%} /><label>{{t}}</label> {%endfor%}
                                                 </div>
 
 
@@ -67,7 +67,7 @@
 
                                                         <div class="container-fluid">
                                                             {%for t in all_types %}
-                                                            <input type="checkbox" name="type" value="{{t}}" {%if t in filter %} checked {%endif%} /><label>{{t}}</label> {%endfor%}
+                                                            <input type="checkbox" id="filter" name="filter" value="{{t}}" {%if t in filter %} checked {%endif%} /><label>{{t}}</label> {%endfor%}
                                                         </div>
                                                     </div>
                                                 </div>

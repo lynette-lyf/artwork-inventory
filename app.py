@@ -14,6 +14,9 @@ def get_connection():
     conn = pymongo.MongoClient(MONGO_URI)
     return conn
     
+all_styles = ['Abstract', 'Abstract Expressionist', 'Contemporary', 'Cubism', 'Expressionism', 'Figurative', 'Geometric', 'Minimalism', 'Modern', 'Nanyang', 'Pop Art', 'Realism', 'Renaissance', 'Surrealism']
+all_types = ['Acrylic', 'Canvas', 'Calligraphy', 'Ink', 'Installation', 'Fabric', 'Oil', 'Paper', 'Painting', 'Portrait', 'Printmaking', 'Sculpture', 'Watercolour']
+        
 app = Flask(__name__)
 
 # READ**************************************************************************
@@ -22,20 +25,19 @@ app = Flask(__name__)
 def index():
     search_terms = request.args.get('search-by')
     filter = request.args.getlist('filter')
-    
-    all_styles = ['Abstract', 'Abstract Expressionist', 'Contemporary', 'Cubism', 'Expressionism', 'Figurative', 'Geometric', 'Minimalism', 'Modern', 'Nanyang', 'Pop Art', 'Realism', 'Renaissance', 'Surrealism']
-    all_types = ['Acrylic', 'Canvas', 'Calligraphy', 'Ink', 'Installation', 'Fabric', 'Oil', 'Paper', 'Painting', 'Portrait', 'Printmaking', 'Sculpture', 'Watercolour']
+   
     
     search_criteria = {}
-    print (search_criteria)
+    
     if search_terms is not None and search_terms is not "":
         search_criteria["title"] = re.compile(r'{}'.format(search_terms), re.I)
         
     if len(filter) > 0:
-        search_criteria['type'] = {
+        search_criteria["type"] = {
             '$all' : filter
         }
-        
+   
+    
     if search_terms is None:
         search_terms = ""
     
@@ -129,9 +131,7 @@ def show_edit_artwork_form(artwork_id):
     })
     
     results = artwork['type']
-    all_styles = ['Abstract', 'Abstract Expressionist', 'Contemporary', 'Cubism', 'Expressionism', 'Figurative', 'Geometric', 'Minimalism', 'Modern', 'Nanyang', 'Pop Art', 'Realism', 'Renaissance', 'Surrealism']
-    all_types = ['Acrylic', 'Canvas', 'Calligraphy', 'Ink', 'Installation', 'Fabric', 'Oil', 'Paper', 'Painting', 'Portrait', 'Printmaking', 'Sculpture', 'Watercolour']
-    
+   
     return render_template('edit_artwork.template.html', artworksAndConsigners=artwork, 
     selected_type=results, all_styles=all_styles, all_types=all_types)
     
@@ -144,7 +144,7 @@ def process_edit_artwork_form(artwork_id):
     dimensions = request.form['dimensions']
     medium = request.form['medium']
     description = request.form['description']
-    votes = int(request.form['votes'])
+    votes = request.form['votes']
     type = request.form.getlist('type')
 
     conn = get_connection()
@@ -165,19 +165,19 @@ def process_edit_artwork_form(artwork_id):
     return redirect("/")
     
 # FAVOURITE FUNCTION************************************************************
-@app.route('/', methods=["POST"])
-def process_votes(artwork_id):
-    votes = int(request.form['votes']) + 1
+# @app.route('/', methods=["POST"])
+# def process_votes(artwork_id):
+#     votes = int(request.form['votes']) + 1
 
     
-    conn = get_connection()
-    conn[DATABASE_NAME]["artworksAndConsigners"].update({
-        '_id': ObjectId(artwork_id)
-    }, {
-        "votes": votes
-    })
+#     conn = get_connection()
+#     conn[DATABASE_NAME]["artworksAndConsigners"].update({
+#         '_id': ObjectId(artwork_id)
+#     }, {
+#         "votes": votes
+#     })
     
-    return redirect("/")
+#     return redirect("/")
     
 # DELETE************************************************************************
 
