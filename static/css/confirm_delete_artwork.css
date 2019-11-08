@@ -1,8 +1,7 @@
 body {
     font-family: Arial;
-    font-size: 12px;
+    font-size: 15px;
     color: black;
-    letter-spacing:1px;
 }
 
 ::-webkit-scrollbar {
@@ -79,7 +78,7 @@ h1 {
     font-family: 'Work Sans', sans-serif;
     font-weight: 800;
     text-transform: uppercase;
-    font-size: 3vh;
+    font-size: 4vh;
     line-height:10%;
     margin-top:15px;
 }
@@ -89,7 +88,7 @@ h1 {
     font-family: 'Work Sans', sans-serif;
     font-weight: 600;
     text-transform: uppercase;
-    font-size: 1.8vh;
+    font-size: 2vh;
     margin-right: 2px;
     line-height:10%;
 }
@@ -98,13 +97,14 @@ h1 {
     font-style: italic;
     font-family: 'Work Sans', sans-serif;
     font-weight: 400;
-    font-size: 1.8vh;
+    font-size: 2vh;
     margin-right: 2px;
 }
 
 .medium, .dimensions {
     letter-spacing: 1px;
     margin-bottom:0px;
+    font-size:16px;
 }
 
 .description {
@@ -149,3 +149,5 @@ button:focus, input:focus {
   outline:0!important;
   box-shadow: none!important;
 }
+
+

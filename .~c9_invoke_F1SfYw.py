@@ -53,22 +53,16 @@ def index():
             '$all' : filter
         }
    
-    # If searchbox is empty, return empty string
+    # If searchbox is empty, return
     if search_terms is None:
         search_terms = ""
     
-    # Return results from database based on search_criteria
-    artworksAndConsigners = conn[DATABASE_NAME]['artworksAndConsigners'].find(search_criteria)
     
-    # Render index.template.html
+    artworksAndConsigners = conn[DATABASE_NAME]['artworksAndConsigners'].find(search_criteria)
     return render_template('index.template.html', results=artworksAndConsigners, search_terms=search_terms, filter=filter, all_styles=all_styles, all_types=all_types)
 
 # VIEW INDIVIDUAL ARTWORK*******************************************************
-
-# Render individual artwork page with artwork ID in route
 @app.route('/artwork/<artwork_id>')
-
-# Allow all primary keys from the database of 1 artwork ID to be shown onto the page
 def show_artwork(artwork_id):
     
     artworksAndConsigners = conn[DATABASE_NAME]["artworksAndConsigners"].find_one({
@@ -86,12 +80,10 @@ def show_artwork(artwork_id):
         "comments": 1
     })
     
-    # Render show_artwork.template.html
     return render_template('show_artwork.template.html', artworksAndConsigners=artworksAndConsigners)
 
-# COMMENT FUNCTION ON EACH INDIVIDUAL ARTWORK***********************************
+# SHOW COMMENTS & COMMENT FORM ON EACH INDIVIDUAL ARTWORK***********************
 
-# Create comment form that will fetch input data to the database
 @app.route('/artwork/<artwork_id>', methods=['POST'])
 def process_add_comment(artwork_id):
     comments = {
@@ -99,7 +91,7 @@ def process_add_comment(artwork_id):
     'comment_comment' : request.form.get('comment_comment')    
     }
     
-    # Update the database with the comment (in an array) for the specific artwork ID
+    
     artworksAndConsigners = conn[DATABASE_NAME]['artworksAndConsigners'].update(
         {
             "_id": ObjectId(artwork_id)
@@ -109,13 +101,11 @@ def process_add_comment(artwork_id):
         }
             
         })
-    # Perform a refresh after comment has been submitted
+
     return redirect(request.url)
 
 # CREATE************************************************************************
 
-
-# Create artwork archive form that will fetch input data to the database
 @app.route('/add-artwork')
 def show_add_artwork_form():
     return render_template('add_artwork.template.html')
@@ -132,7 +122,7 @@ def process_add_artwork_form():
     votes = request.form['votes']
     type = request.form.getlist('type')
     
-    # Create a new artwork archive with the archived details and insert them into the database with a new artwork ID
+    
     conn[DATABASE_NAME]['artworksAndConsigners'].insert({
         "image" : image,
         "artist" : artist,
@@ -145,12 +135,10 @@ def process_add_artwork_form():
         "votes": votes
     })
     
-    # Redirect to the index page after pressing the submit button
     return redirect("/")
 
 # UPDATE************************************************************************
 
-# Create artwork archive form that will fetch input data to the database
 @app.route('/edit-artwork/<artwork_id>')
 def show_edit_artwork_form(artwork_id):
     conn = get_connection()
@@ -175,7 +163,7 @@ def process_edit_artwork_form(artwork_id):
     votes = request.form['votes']
     type = request.form.getlist('type')
 
-    # Update the existing artwork archive with the updated details and insert them into the database
+    
     conn[DATABASE_NAME]["artworksAndConsigners"].update({
         '_id': ObjectId(artwork_id)
     }, {
@@ -190,12 +178,10 @@ def process_edit_artwork_form(artwork_id):
         "votes": votes
     })
     
-    # Redirect to the index page after pressing the submit button
     return redirect("/")
     
 # FAVOURITE FUNCTION************************************************************
-
-# Perform an increment +1 of votes each time the Upvote button is triggered
+    
 @app.route('/upvote/<artwork_id>', methods=['POST'])
 def process_votes(artwork_id):
     upvote = conn[DATABASE_NAME]["artworksAndConsigners"].update({
@@ -209,7 +195,6 @@ def process_votes(artwork_id):
 
 # DELETE************************************************************************
 
-# Prompt user to confirm the deletion of the selected archived artwork
 @app.route('/confirm-delete-artwork/<artwork_id>')
 def confirm_delete_artwork(artwork_id):
     
@@ -228,7 +213,6 @@ def confirm_delete_artwork(artwork_id):
     
     return render_template('confirm_delete_artwork.template.html', artworksAndConsigners=artwork)
 
-# Remove the selected archived artwork from the database
 @app.route('/delete-artwork/<artwork_id>')
 def delete_artwork(artwork_id):
     conn[DATABASE_NAME]["artworksAndConsigners"].delete_one({
@@ -239,16 +223,12 @@ def delete_artwork(artwork_id):
 
     
 # INFORMATION FOR ART STYLES****************************************************
-
-# Retrieve information of artstyles from another database collection named 'artstyles'
 @app.route('/information/artstyles')
 def art_style():
     
     styles = conn[DATABASE_NAME]['artstyles'].find()
     return render_template('artstyles.template.html', results=styles)
     
-
-# To initialise app.py
 
 # "magic code" -- boilerplate
 if __name__ == '__main__':
