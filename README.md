@@ -8,6 +8,8 @@ The website aims to act as a platform that encourages the art community to grow,
 This project also intends to act as an extended feature of my [Stream One Project: User-Centric Frontend Development, an art gallery website titled ‘Artshack’](https://lynette-lyf.github.io/artshack/).
 
 ## Demo
+<a href="https://gph.is/g/4Vxj2K6"><img src="https://media.giphy.com/media/j1np2G2cVxuIVFbQMX/giphy.gif"/></a>
+  
 A live demo can be found [here](https://lyfartshackdb.herokuapp.com/).
 
 ## UX
