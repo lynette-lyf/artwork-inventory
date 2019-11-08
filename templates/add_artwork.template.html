@@ -1,312 +1,314 @@
 <!doctype html>
 <html lang="en">
-  <head>
-     <!--Required meta tags -->
+
+<head>
+    <!--Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-     <!--Bootstrap CSS -->
+    <!--Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-     <!--Font Awesome CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
-     <!--Google Fonts API -->
+    <!--Font Awesome CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <!--Google Fonts API -->
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,600,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/static/css/add_artwork.css">
-    
+
     <title>Contribute to our Database</title>
-  </head>
-  
-  
-  <body>
-    
-    
+</head>
+
+
+<body>
+
+
     <a href="/"><img id="logo" style="max-height:100px;" src="/static/img/contribute.png"/></a>
 
-<nav class="navbar navbar-expand-lg navbar-default sticky-top">
-  <a class="navbar-brand" href="#">&nbsp;</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-xl navbar-default sticky-top">
+        <a class="navbar-brand" href="#">&nbsp;</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"> <i class="fa fa-bars" style="color:#fff; font-size:28px;"></i></span>
   </button>
 
-  <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-    <ul class="navbar-nav">
-        <li class="nav-item">
-          <a href="/" id="home" class="btn btn-default"><i class="fa fa-home"></i>    Home</a>
-      </li>
-      <li class="nav-item">
-          <div id="contribute" class="btn btn-default" aria-disabled="true"><i class="fa fa-plus"></i>    Contribute</div>
-      </li>
-      <li class="nav-item">
-          <a href="information/artstyles" id="information" class="btn btn-default"><i class="fa fa-info"></i>    Information</a>
-      </li>
-     <li class="nav-item">
-          <a href="information/artstyles" id="information" class="btn btn-default"><i class="fa fa-info"></i>    Information</a>
-      </li>
-    </ul>
-   
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="/" id="home" class="btn btn-default"><i class="fa fa-home"></i>    Home</a>
+                </li>
+                <li class="nav-item">
+                    <div id="contribute" class="btn btn-default" aria-disabled="true"><i class="fa fa-plus"></i> Contribute</div>
+                </li>
+                <li class="nav-item">
+                    <a href="information/artstyles" id="information" class="btn btn-default"><i class="fa fa-info"></i>    Information</a>
+                </li>
+                <li class="nav-item">
+                    <a href="information/artstyles" id="information" class="btn btn-default"><i class="fa fa-info"></i>    Information</a>
+                </li>
+            </ul>
+
         </div>
-  </div>
-</nav>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        </div>
+    </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <div class='container'>
-        
+
         <form class='form pt-5' method="POST">
-          
-          
-          <div class='form-row'>
-              <div class='col-12 mb-3'>
-                <label>Image</label>
-                <input type='text' class='form-control' name='image' required/>
+
+
+            <div class='form-row'>
+                <div class='col-12 mb-3'>
+                    <label>Image</label>
+                    <input type='text' class='form-control' name='image' required/>
+                </div>
+
+
+
+                <div class='col-6 mb-3'>
+                    <label>Artist</label>
+                    <input type='text' class='form-control' name='artist' required/>
+                </div>
+                <div class='col-6 mb-3'>
+                    <label>Title</label>
+                    <input type='text' class='form-control' name='title' required/>
+                </div>
             </div>
-            
-            
-            
-            <div class='col-6 mb-3'>
-                <label>Artist</label>
-                <input type='text' class='form-control' name='artist' required/>
+
+            <div class='form-row'>
+                <div class='col-2 mb-3'>
+                    <label>Year</label>
+                    <input type='number' class='form-control' maxlength='4' min='1000' max='2019' name='year' required/>
+                </div>
+                <div class='col-4 mb-3'>
+                    <label>Dimensions (height x width in cm)</label>
+                    <input type='text' class='form-control' name='dimensions' required/>
+                </div>
+                <div class='col-6 mb-3'>
+                    <label>Medium</label>
+                    <input type='text' class='form-control' name='medium' required/>
+                </div>
+                <div class='col-6 mb-3'>
+                    <input type='text' id="form-votes" class='form-control' name='votes' value='0' />
+                </div>
             </div>
-            <div class='col-6 mb-3'>
-                <label>Title</label>
-                <input type='text' class='form-control' name='title' required/>
-            </div>
-          </div>
-          
-          <div class='form-row'>
-            <div class='col-2 mb-3'>
-                <label>Year</label>
-                <input type='number' class='form-control' maxlength='4' min='1000' max='2019' name='year' required/>
-            </div>
-            <div class='col-4 mb-3'>
-                <label>Dimensions (height x width in cm)</label>
-                <input type='text' class='form-control' name='dimensions' required/>
-            </div>
-            <div class='col-6 mb-3'>
-                <label>Medium</label>
-                <input type='text' class='form-control' name='medium' required/>
-            </div>
-            <div class='col-6 mb-3'>
-                <input type='text' id="form-votes" class='form-control' name='votes' value='0'/>
-            </div>
-          </div>
-            
+
             <div class='form-group'>
                 <label>Description (max 650 characters)</label>
                 <textarea class="form-control" rows="3" maxlength='650' name='description'></textarea>
             </div>
-            
-          <div class='form-row'>
-            <div class='col-12'>
-           <label><a href='information/artstyles'><i id="info-style" class="fa fa-info-circle fa-lg" aria-hidden="true"></i></a>  Style(s): (Please select all that apply.)</label>
-           </div>
-           </div>
-           
+
             <div class='form-row'>
-            <div class='col-4'>
-              
-            
-            
-            <div class="form-check">
-            <input class="form-check-input" type='checkbox' value='Abstract' id="type" name="type">
-            <label class="form-check-label" for="Abstract">Abstract</label>
+                <div class='col-12'>
+                    <label><a href='information/artstyles'><i id="info-style" class="fa fa-info-circle fa-lg" aria-hidden="true"></i></a>  Style(s): (Please select all that apply.)</label>
+                </div>
             </div>
-            
-            <div class="form-check">
-            <input class="form-check-input" type='checkbox' value='Abstract Expressionist' id="type" name="type">
-            <label class="form-check-label" for="Abstract Expressionist">Abstract Expressionist</label>
-            </div>
-            
-            <div class="form-check">
-            <input class="form-check-input" type='checkbox' value='Contemporary' id="type" name="type">
-            <label class="form-check-label" for="Contemporary">Contemporary</label>
-            </div>
-            
-            <div class="form-check">
-            <input class="form-check-input" type='checkbox' value='Cubism' id="type" name="type">
-            <label class="form-check-label" for="Cubism">Cubism</label>
-            </div>
-            
-            <div class="form-check">
-            <input class="form-check-input" type='checkbox' value='Expressionism' id="type" name="type">
-            <label class="form-check-label" for="Expressionism">Expressionism</label>
-            </div>
-          
-            </div>
-            
-            <div class='col-4'>
-            
-            <div class="form-check">
-            <input class="form-check-input" type='checkbox' value='Figurative' id="type" name="type">
-            <label class="form-check-label" for="Figurative">Figurative</label>
-            </div>
-            
-            <div class="form-check">
-            <input class="form-check-input" type='checkbox' value='Geometric' id="type" name="type">
-            <label class="form-check-label" for="Geometric">Geometric</label>
-            </div>
-            
-            <div class="form-check">
-            <input class="form-check-input" type='checkbox' value='Minimalism' id="type" name="type">
-            <label class="form-check-label" for="Minimalism">Minimalism</label>
-            </div>
-            
-            <div class="form-check">
-            <input class="form-check-input" type='checkbox' value='Modern' id="type" name="type">
-            <label class="form-check-label" for="Modern">Modern</label>
-            </div>
-            
-            <div class="form-check">
-            <input class="form-check-input" type='checkbox' value='Nanyang' id="type" name="type">
-            <label class="form-check-label" for="Nanyang">Nanyang</label>
-            </div>
-            
-            </div>
-            
-            <div class='col-4'>
-          
-            <div class="form-check">
-            <input class="form-check-input" type='checkbox' value='Pop Art' id="type" name="type">
-            <label class="form-check-label" for="Pop Art">Pop Art</label>
-            </div>
-            
-            <div class="form-check">
-            <input class="form-check-input" type='checkbox' value='Realism' id="type" name="type">
-            <label class="form-check-label" for="Realism">Realism</label>
-            </div>
-            
-            <div class="form-check">
-            <input class="form-check-input" type='checkbox' value='Renaissance' id="type" name="type">
-            <label class="form-check-label" for="Renaissance">Renaissance</label>
-            </div>
-            
-            <div class="form-check">
-            <input class="form-check-input" type='checkbox' value='Surrealism' id="type" name="type">
-            <label class="form-check-label" for="Surrealism">Surrealism</label>
-            </div>
-            
-      
-            
-            
-            </div>
-            </div>
-            
+
             <div class='form-row'>
-            <div class='col-12 pt-3'>
-              
-           <label>Type(s): (Please select all that apply.)</label>
-           </div>
-           </div>
-            
+                <div class='col-4'>
+
+
+
+                    <div class="form-check">
+                        <input class="form-check-input" type='checkbox' value='Abstract' id="type" name="type">
+                        <label class="form-check-label" for="Abstract">Abstract</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type='checkbox' value='Abstract Expressionist' id="type" name="type">
+                        <label class="form-check-label" for="Abstract Expressionist">Abstract Expressionist</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type='checkbox' value='Contemporary' id="type" name="type">
+                        <label class="form-check-label" for="Contemporary">Contemporary</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type='checkbox' value='Cubism' id="type" name="type">
+                        <label class="form-check-label" for="Cubism">Cubism</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type='checkbox' value='Expressionism' id="type" name="type">
+                        <label class="form-check-label" for="Expressionism">Expressionism</label>
+                    </div>
+
+                </div>
+
+                <div class='col-4'>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type='checkbox' value='Figurative' id="type" name="type">
+                        <label class="form-check-label" for="Figurative">Figurative</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type='checkbox' value='Geometric' id="type" name="type">
+                        <label class="form-check-label" for="Geometric">Geometric</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type='checkbox' value='Minimalism' id="type" name="type">
+                        <label class="form-check-label" for="Minimalism">Minimalism</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type='checkbox' value='Modern' id="type" name="type">
+                        <label class="form-check-label" for="Modern">Modern</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type='checkbox' value='Nanyang' id="type" name="type">
+                        <label class="form-check-label" for="Nanyang">Nanyang</label>
+                    </div>
+
+                </div>
+
+                <div class='col-4'>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type='checkbox' value='Pop Art' id="type" name="type">
+                        <label class="form-check-label" for="Pop Art">Pop Art</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type='checkbox' value='Realism' id="type" name="type">
+                        <label class="form-check-label" for="Realism">Realism</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type='checkbox' value='Renaissance' id="type" name="type">
+                        <label class="form-check-label" for="Renaissance">Renaissance</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type='checkbox' value='Surrealism' id="type" name="type">
+                        <label class="form-check-label" for="Surrealism">Surrealism</label>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+
+            <div class='form-row'>
+                <div class='col-12 pt-3'>
+
+                    <label>Type(s): (Please select all that apply.)</label>
+                </div>
+            </div>
+
             <div class='form-row pb-5'>
-            <div class='col-4'>
-            
-            <div class="form-check">
-            <input class="form-check-input" type='checkbox' value='Acrylic' id="type" name="type">
-            <label class="form-check-label" for="Acrylic">Acrylic</label>
+                <div class='col-4'>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type='checkbox' value='Acrylic' id="type" name="type">
+                        <label class="form-check-label" for="Acrylic">Acrylic</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type='checkbox' value='Canvas' id="type" name="type">
+                        <label class="form-check-label" for="Canvas">Canvas</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type='checkbox' value='Calligraphy' id="type" name="type">
+                        <label class="form-check-label" for="Calligraphy">Calligraphy</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type='checkbox' value='Ink' id="type" name="type">
+                        <label class="form-check-label" for="Ink">Ink</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type='checkbox' value='Installation' id="type" name="type">
+                        <label class="form-check-label" for="Installation">Installation</label>
+                    </div>
+
+                </div>
+
+                <div class='col-4'>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type='checkbox' value='Fabric' id="type" name="type">
+                        <label class="form-check-label" for="Fabric">Fabric</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type='checkbox' value='Oil' id="type" name="type">
+                        <label class="form-check-label" for="Oil">Oil</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type='checkbox' value='Paper' id="type" name="type">
+                        <label class="form-check-label" for="Paper">Paper</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type='checkbox' value='Painting' id="type" name="type">
+                        <label class="form-check-label" for="Painting">Painting</label>
+                    </div>
+
+                </div>
+
+                <div class='col-4'>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type='checkbox' value='Portrait' id="type" name="type">
+                        <label class="form-check-label" for="Portrait">Portrait</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type='checkbox' value='Printmaking' id="type" name="type">
+                        <label class="form-check-label" for="Printmaking">Printmaking</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type='checkbox' value='Sculpture' id="type" name="type">
+                        <label class="form-check-label" for="Sculpture">Sculpture</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type='checkbox' value='Watercolour' id="type" name="type">
+                        <label class="form-check-label" for="Watercolour">Watercolour</label>
+                    </div>
+
+
+                </div>
             </div>
-            
-            <div class="form-check">
-            <input class="form-check-input" type='checkbox' value='Canvas' id="type" name="type">
-            <label class="form-check-label" for="Canvas">Canvas</label>
-            </div>
-            
-            <div class="form-check">
-            <input class="form-check-input" type='checkbox' value='Calligraphy' id="type" name="type">
-            <label class="form-check-label" for="Calligraphy">Calligraphy</label>
-            </div>
-            
-            <div class="form-check">
-            <input class="form-check-input" type='checkbox' value='Ink' id="type" name="type">
-            <label class="form-check-label" for="Ink">Ink</label>
-            </div>
-            
-            <div class="form-check">
-            <input class="form-check-input" type='checkbox' value='Installation' id="type" name="type">
-            <label class="form-check-label" for="Installation">Installation</label>
-            </div>
-            
-            </div>
-            
-            <div class='col-4'>
-              
-            <div class="form-check">
-            <input class="form-check-input" type='checkbox' value='Fabric' id="type" name="type">
-            <label class="form-check-label" for="Fabric">Fabric</label>
-            </div>
-            
-            <div class="form-check">
-            <input class="form-check-input" type='checkbox' value='Oil' id="type" name="type">
-            <label class="form-check-label" for="Oil">Oil</label>
-            </div>
-            
-            <div class="form-check">
-            <input class="form-check-input" type='checkbox' value='Paper' id="type" name="type">
-            <label class="form-check-label" for="Paper">Paper</label>
-            </div>
-            
-            <div class="form-check">
-            <input class="form-check-input" type='checkbox' value='Painting' id="type" name="type">
-            <label class="form-check-label" for="Painting">Painting</label>
-            </div>
-          
-            </div>
-            
-            <div class='col-4'>
-            
-            <div class="form-check">
-            <input class="form-check-input" type='checkbox' value='Portrait' id="type" name="type">
-            <label class="form-check-label" for="Portrait">Portrait</label>
-            </div>
-            
-            <div class="form-check">
-            <input class="form-check-input" type='checkbox' value='Printmaking' id="type" name="type">
-            <label class="form-check-label" for="Printmaking">Printmaking</label>
-            </div>
-            
-            <div class="form-check">
-            <input class="form-check-input" type='checkbox' value='Sculpture' id="type" name="type">
-            <label class="form-check-label" for="Sculpture">Sculpture</label>
-            </div>
-            
-            <div class="form-check">
-            <input class="form-check-input" type='checkbox' value='Watercolour' id="type" name="type">
-            <label class="form-check-label" for="Watercolour">Watercolour</label>
-            </div>
-            
-            
-            </div>
-            </div>
-            
-            
-        
-          <div class="col-12 text-center pb-5">
-             <button type="submit" id="submit" class="btn btn-default">
-                <i class="fa fa-search"></i>    Submit
+
+
+
+            <div class="col-12 text-center pb-5">
+                <button type="submit" id="submit" class="btn btn-default">
+                <i class="fa fa-upload"></i>    Submit
               </button>
-          </div>
+            </div>
         </form>
     </div>
 
-     <!-- Optional JavaScript -->
-     <!--jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- Optional JavaScript -->
+    <!--jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </body>
+</body>
+
 </html>

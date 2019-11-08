@@ -87,7 +87,7 @@ body {
 
 
 
-@media (max-width: 994px) {
+@media (max-width: 1024px) {
     .img-fluid {
         max-width:100%
     }
@@ -97,7 +97,7 @@ body {
     }
 }
 
-@media screen and (min-width: 995px) {
+@media screen and (min-width: 1025px) {
     .navbar-nav {
         align-items: end;
     }

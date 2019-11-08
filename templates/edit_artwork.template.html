@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -8,127 +9,117 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- Font Awesome CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <!-- Google Fonts API -->
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,600,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/static/css/edit_artwork.css">
-    
-    <title>Update: {{artworksAndConsigners["title"]}} by {{artworksAndConsigners["artist"]}}</title>
-  </head>
-  <body>
-    
-    
-<a href='/'><img id="logo" style="max-height:100px;" src="/static/img/update.png"/></a>
-<h1>{{artworksAndConsigners["title"]}} by {{artworksAndConsigners["artist"]}}</h1>
 
-<nav class="navbar navbar-expand-lg navbar-default sticky-top">
-  <a class="navbar-brand" href="#">&nbsp;</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <title>Update: {{artworksAndConsigners["title"]}} by {{artworksAndConsigners["artist"]}}</title>
+</head>
+
+<body>
+
+
+    <a href='/'><img id="logo" style="max-height:100px;" src="/static/img/update.png"/></a>
+    <h1>{{artworksAndConsigners["title"]}} by {{artworksAndConsigners["artist"]}}</h1>
+
+    <nav class="navbar navbar-expand-xl navbar-default sticky-top">
+        <a class="navbar-brand" href="#">&nbsp;</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"> <i class="fa fa-bars" style="color:#fff; font-size:28px;"></i></span>
   </button>
 
-  <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-          <a href="/" id="home" class="btn btn-default"><i class="fa fa-home"></i>    Home</a>
-      </li>
-     <li class="nav-item">
-          <a href="/add-artwork" id="contribute" class="btn btn-default"><i class="fa fa-plus"></i>    Contribute</a>
-      </li>
-      <li class="nav-item">
-        <a href="/information/artstyles" id="information" class="btn btn-default"><i class="fa fa-info"></i>    Information</a>
-      </li>
-    </ul>
-   
-        </div>
-  </div>
-</nav>      
-      
-      
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="/" id="home" class="btn btn-default"><i class="fa fa-home"></i>    Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/add-artwork" id="contribute" class="btn btn-default"><i class="fa fa-plus"></i>    Contribute</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/information/artstyles" id="information" class="btn btn-default"><i class="fa fa-info"></i>    Information</a>
+                </li>
+            </ul>
 
-      
-      
-      
-      
+        </div>
+        </div>
+    </nav>
+
+
+
+
+
+
+
     <div class='container'>
         <form class='form' method="POST">
-          <div class='form-row'>
-              <div class='col-12 text-center pt-3'>
-                  
-                  <label>Current Image</label><br>
-                  <img class='img-fluid' style="max-height:300px; max-width:300px;" src='{{ artworksAndConsigners['image'] }}'>
-                   </div>
-                  </div>
-                  
-                 <div class='form-row'>
-              <div class='col-12'>
-                  
-                <label>Image</label>
-                <input type='text' class='form-control' name='image' value='{{artworksAndConsigners["image"]}}' required/>
+            <div class='form-row'>
+                <div class='col-12 text-center pt-3'>
+
+                    <label>Current Image</label><br>
+                    <img class='img-fluid' style="max-height:300px; max-width:300px;" src='{{ artworksAndConsigners[' image '] }}'>
+                </div>
             </div>
-            <div class='col-6'>
-                <label>Artist</label>
-                <input type='text' class='form-control' name='artist' value='{{artworksAndConsigners["artist"]}}' required/>
+
+            <div class='form-row'>
+                <div class='col-12'>
+
+                    <label>Image</label>
+                    <input type='text' class='form-control' name='image' value='{{artworksAndConsigners["image"]}}' required/>
+                </div>
+                <div class='col-6'>
+                    <label>Artist</label>
+                    <input type='text' class='form-control' name='artist' value='{{artworksAndConsigners["artist"]}}' required/>
+                </div>
+                <div class='col-6'>
+                    <label>Title</label>
+                    <input type='text' class='form-control' name='title' value='{{artworksAndConsigners["title"]}}' required/>
+                </div>
             </div>
-            <div class='col-6'>
-                <label>Title</label>
-                <input type='text' class='form-control' name='title' value='{{artworksAndConsigners["title"]}}' required/>
+
+            <div class='form-row'>
+                <div class='col-2'>
+                    <label>Year</label>
+                    <input type='number' class='form-control' maxlength='4' min='1000' max='2019' name='year' value='{{artworksAndConsigners["year"]}}' required/>
+                </div>
+                <div class='col-4'>
+                    <label>Dimensions (height x width in cm)</label>
+                    <input type='text' class='form-control' name='dimensions' value='{{artworksAndConsigners["dimensions"]}}' required/>
+                </div>
+                <div class='col-6'>
+                    <label>Medium</label>
+                    <input type='text' class='form-control' name='medium' value='{{artworksAndConsigners["medium"]}}' required/>
+                </div>
             </div>
-          </div>
-          
-          <div class='form-row'>
-            <div class='col-2'>
-                <label>Year</label>
-                <input type='number' class='form-control' maxlength='4' min='1000' max='2019' name='year' value='{{artworksAndConsigners["year"]}}' required/>
+
+            <div class='col-6 mb-3'>
+                <input type='text' id="form-votes" class='form-control' name='votes' value='{{artworksAndConsigners["votes"]}}' />
             </div>
-            <div class='col-4'>
-                <label>Dimensions (height x width in cm)</label>
-                <input type='text' class='form-control' name='dimensions' value='{{artworksAndConsigners["dimensions"]}}' required/>
-            </div>
-            <div class='col-6'>
-                <label>Medium</label>
-                <input type='text' class='form-control' name='medium' value='{{artworksAndConsigners["medium"]}}' required/>
-            </div>
-          </div>
-          
-          <div class='col-6 mb-3'>
-                <input type='text' id="form-votes" class='form-control' name='votes' value='{{artworksAndConsigners["votes"]}}'/>
-            </div>
-            
+
             <div class='form-group'>
                 <label>Description (max 650 characters)</label>
                 <textarea class="form-control" rows="5" maxlength='650' name='description'>{{artworksAndConsigners["description"]}}</textarea>
             </div>
-            
-            
+
+
             <div class='form-group'>
-                <p><a href='/information/artstyles'><i id="info-style" class="fa fa-info-circle fa-lg" aria-hidden="true"></i></a>
-                Style(s): (Please select all that apply.)</p>
+                <p><a href='/information/artstyles'><i id="info-style" class="fa fa-info-circle fa-lg" aria-hidden="true"></i></a> Style(s): (Please select all that apply.)</p>
                 {%for t in all_styles %}
-                <input type="checkbox" name="type" value="{{t}}"
-                {%if t in selected_type %}
-                checked
-                {%endif%}
-                /><label>{{t}}</label>
-                {%endfor%}
+                <input type="checkbox" name="type" value="{{t}}" {%if t in selected_type %} checked {%endif%} /><label>{{t}}</label> {%endfor%}
             </div>
-            
+
             <div class='form-group'>
                 <p>Type(s): (Please select all that apply.)</p>
                 {%for t in all_types %}
-                <input type="checkbox" name="type" value="{{t}}"
-                {%if t in selected_type %}
-                checked
-                {%endif%}
-                /><label>{{t}}</label>
-                {%endfor%}
+                <input type="checkbox" name="type" value="{{t}}" {%if t in selected_type %} checked {%endif%} /><label>{{t}}</label> {%endfor%}
             </div>
-            
-           <div class="col-12 text-center pb-5">
-             <button type="submit" id="update" class="btn btn-default">
+
+            <div class="col-12 text-center pb-5">
+                <button type="submit" id="update" class="btn btn-default">
                 <i class="fa fa-refresh"></i>    Update
               </button>
-          </div>
+            </div>
         </form>
     </div>
 
@@ -137,5 +128,6 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </body>
+</body>
+
 </html>

@@ -107,7 +107,7 @@ input[type="search"]::-webkit-search-cancel-button {
         position: static !important;
     }
     
-@media (max-width: 994px) {
+@media (max-width: 1024px) {
     .img-fluid {
         max-width:100%
     }
@@ -129,7 +129,7 @@ input[type="search"]::-webkit-search-cancel-button {
     }
 }
 
-@media screen and (min-width: 995px) {
+@media screen and (min-width: 1025px) {
     .navbar-nav {
         align-items: end;
     }

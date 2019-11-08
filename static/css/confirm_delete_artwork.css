@@ -124,7 +124,7 @@ h1 {
     margin-top: 0px;
 }
 
-@media (max-width: 994px) {
+@media (max-width: 1024px) {
     .img-fluid {
         max-width:100%
     }
@@ -134,7 +134,7 @@ h1 {
     }
 }
 
-@media screen and (min-width: 995px) {
+@media screen and (min-width: 1025px) {
     .navbar-nav {
         align-items: end;
     }
